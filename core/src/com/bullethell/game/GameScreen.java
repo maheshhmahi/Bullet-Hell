@@ -52,10 +52,10 @@ public class GameScreen implements Screen {
 
     private void renderBackground(float detlaTime) {
 
-        backGroundOffsets[0] += detlaTime + backgroundMaxScrollingSpeed / 32;
-        backGroundOffsets[1] += detlaTime + backgroundMaxScrollingSpeed / 16;
-        backGroundOffsets[2] += detlaTime + backgroundMaxScrollingSpeed / 12;
-        backGroundOffsets[3] += detlaTime + backgroundMaxScrollingSpeed / 8;
+        backGroundOffsets[0] += detlaTime + backgroundMaxScrollingSpeed / 64;
+        backGroundOffsets[1] += detlaTime + backgroundMaxScrollingSpeed / 60;
+        backGroundOffsets[2] += detlaTime + backgroundMaxScrollingSpeed / 58;
+        backGroundOffsets[3] += detlaTime + backgroundMaxScrollingSpeed / 50;
 
         for (int i=0; i<backgrounds.length; i++) {
             if(backGroundOffsets[i] > HEIGHT) {
