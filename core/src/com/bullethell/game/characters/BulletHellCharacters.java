@@ -6,32 +6,32 @@ import com.bullethell.game.characters.hero.Hero;
 public class BulletHellCharacters extends GameCharacters{
 
     @Override
-    protected Hero createHero() {
+    public Hero createHero() {
         return new Hero();
     }
 
     @Override
-    protected GeneralEnemyOne createGeneralEnemyOne() {
+    public GeneralEnemyOne createGeneralEnemyOne() {
         return new GeneralEnemyOne();
     }
 
     @Override
-    protected GeneralEnemyTwo createGeneralEnemyTwo() {
+    public GeneralEnemyTwo createGeneralEnemyTwo() {
         return new GeneralEnemyTwo();
     }
 
     @Override
-    protected MidEnemyOne createMidEnemyOne() {
+    public MidEnemyOne createMidEnemyOne() {
         return new MidEnemyOne();
     }
 
     @Override
-    protected MidEnemyTwo createMidEnemyTwo() {
+    public MidEnemyTwo createMidEnemyTwo() {
         return new MidEnemyTwo();
     }
 
     @Override
-    protected FinalBoss createFinalBoss() {
+    public FinalBoss createFinalBoss() {
         return new FinalBoss();
     }
 }

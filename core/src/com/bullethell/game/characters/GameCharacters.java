@@ -5,11 +5,11 @@ import com.bullethell.game.characters.hero.Hero;
 
 public abstract class GameCharacters {
 
-    protected abstract Hero createHero();
-    protected abstract GeneralEnemyOne createGeneralEnemyOne();
-    protected abstract GeneralEnemyTwo createGeneralEnemyTwo();
-    protected abstract MidEnemyOne createMidEnemyOne();
-    protected abstract MidEnemyTwo createMidEnemyTwo();
-    protected abstract FinalBoss createFinalBoss();
+    public abstract Hero createHero();
+    public abstract GeneralEnemyOne createGeneralEnemyOne();
+    public abstract GeneralEnemyTwo createGeneralEnemyTwo();
+    public abstract MidEnemyOne createMidEnemyOne();
+    public abstract MidEnemyTwo createMidEnemyTwo();
+    public abstract FinalBoss createFinalBoss();
 
 }

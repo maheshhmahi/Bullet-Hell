@@ -7,38 +7,41 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.bullethell.game.characters.BulletHellCharacters;
+import com.bullethell.game.characters.GameCharacters;
+import com.bullethell.game.characters.hero.HeroCharacter;
+import com.bullethell.game.utils.Constants;
 
 public class GameScreen implements Screen {
 
     private Camera camera;
     private Viewport viewport;
     private SpriteBatch spriteBatch;
-//    private Texture background;
     private Texture[] backgrounds;
-
-//    private int backGroundOffset;
 
     private float[] backGroundOffsets = {0,0,0,0};
     private float backgroundMaxScrollingSpeed;
-    private final int WIDTH = 72;
-    private final int HEIGHT = 128;
+
+    GameCharacters gameCharacters;
+
+    HeroCharacter heroCharacter;
 
     GameScreen() {
 
         camera = new OrthographicCamera();
-        viewport = new StretchViewport(WIDTH, HEIGHT, camera);
-//        background = new Texture("background.png");
-//        backGroundOffset = 0;
+        viewport = new StretchViewport(Constants.GAME_WIDTH, Constants.GAME_HEIGHT, camera);
+
         backgrounds = new Texture[4];
         backgrounds[0] = new Texture("background.png");
         backgrounds[1] = new Texture("background1.png");
         backgrounds[2] = new Texture("background2.png");
         backgrounds[3] = new Texture("background4.png");
 
-        backgroundMaxScrollingSpeed = (float) (HEIGHT / 4);
+        backgroundMaxScrollingSpeed = (float) (Constants.GAME_HEIGHT / 4);
 
         spriteBatch = new SpriteBatch();
-
+        gameCharacters = new BulletHellCharacters();
+        heroCharacter = gameCharacters.createHero();
     }
 
     @Override
@@ -47,6 +50,9 @@ public class GameScreen implements Screen {
 
         //scrolling background
         renderBackground(deltaTime);
+        //render hero
+        heroCharacter.render(spriteBatch);
+        heroCharacter.update(deltaTime);
         spriteBatch.end();
     }
 
@@ -58,11 +64,11 @@ public class GameScreen implements Screen {
         backGroundOffsets[3] += detlaTime + backgroundMaxScrollingSpeed / 50;
 
         for (int i=0; i<backgrounds.length; i++) {
-            if(backGroundOffsets[i] > HEIGHT) {
+            if(backGroundOffsets[i] > Constants.GAME_HEIGHT) {
                 backGroundOffsets[i] = 0;
             }
-            spriteBatch.draw(backgrounds[i], 0, -backGroundOffsets[i], WIDTH, HEIGHT);
-            spriteBatch.draw(backgrounds[i], 0, -backGroundOffsets[i] + HEIGHT, WIDTH, HEIGHT);
+            spriteBatch.draw(backgrounds[i], 0, -backGroundOffsets[i], Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+            spriteBatch.draw(backgrounds[i], 0, -backGroundOffsets[i] + Constants.GAME_HEIGHT, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         }
 
     }
