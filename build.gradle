@@ -49,7 +49,9 @@ project(":desktop") {
         implementation project(":core")
         api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        
+        api "com.badlogicgames.gdx:gdx-lwjgl3-glfw-awt-macos"
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"  // Assuming LWJGL3 backend
+        implementation "com.badlogicgames.gdx:gdx-lwjgl3-glfw-awt-macos:$gdxVersion"
     }
 }
 
