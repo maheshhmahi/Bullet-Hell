@@ -42,6 +42,7 @@ public class GameScreen implements Screen {
         spriteBatch = new SpriteBatch();
         gameCharacters = new BulletHellCharacters();
         heroCharacter = gameCharacters.createHero();
+        enemy1Character = gameCharacters.createGeneralEnemyOne();
     }
 
     @Override
