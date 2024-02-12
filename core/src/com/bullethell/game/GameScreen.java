@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.bullethell.game.characters.BulletHellCharacters;
 import com.bullethell.game.characters.GameCharacters;
+import com.bullethell.game.characters.enemy.FinalBoss;
+import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 import com.bullethell.game.characters.hero.HeroCharacter;
 import com.bullethell.game.utils.Constants;
 
@@ -22,9 +24,12 @@ public class GameScreen implements Screen {
     private float[] backGroundOffsets = {0,0,0,0};
     private float backgroundMaxScrollingSpeed;
 
+    FinalBoss finalBoss;
     GameCharacters gameCharacters;
 
     HeroCharacter heroCharacter;
+
+    float elapsedTime = 0;
 
     GameScreen() {
 
@@ -42,10 +47,13 @@ public class GameScreen implements Screen {
         spriteBatch = new SpriteBatch();
         gameCharacters = new BulletHellCharacters();
         heroCharacter = gameCharacters.createHero();
+        finalBoss = gameCharacters.createFinalBoss();
     }
 
     @Override
     public void render(float deltaTime) {
+        elapsedTime += deltaTime;
+        boolean bossVisible = false;
         spriteBatch.begin();
 
         //scrolling background
@@ -53,6 +61,14 @@ public class GameScreen implements Screen {
         //render hero
         heroCharacter.render(spriteBatch);
         heroCharacter.update(deltaTime);
+        if (elapsedTime >= 90 && !bossVisible) {
+            bossVisible = true; // Set flag to render continuously
+        }
+
+        if (bossVisible) {
+            finalBoss.render(spriteBatch);
+            finalBoss.update(deltaTime);
+        }
         spriteBatch.end();
     }
 

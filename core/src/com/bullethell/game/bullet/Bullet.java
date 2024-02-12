@@ -1,11 +1,11 @@
-package com.mygdx.game.entities.bullet;
+package com.bullethell.game.bullet;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mygdx.game.MyGdxGame;
+import com.bullethell.game.utils.Constants;
 
 public abstract class Bullet {
     protected Texture texture;
@@ -49,8 +49,8 @@ public abstract class Bullet {
     public boolean outOfBorder(int pixels)
     {
         return (pos.x+size.x < -pixels || pos.y+size.y < -pixels ||
-                pos.x > MyGdxGame.WIDTH + pixels ||
-                pos.y > MyGdxGame.HEIGHT + pixels);
+                pos.x > Constants.GAME_WIDTH + pixels ||
+                pos.y > Constants.GAME_HEIGHT + pixels);
     }
 
     public long getInitTime()

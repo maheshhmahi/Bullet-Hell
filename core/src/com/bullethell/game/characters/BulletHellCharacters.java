@@ -2,6 +2,7 @@ package com.bullethell.game.characters;
 
 import com.bullethell.game.characters.enemy.*;
 import com.bullethell.game.characters.hero.Hero;
+import com.bullethell.game.utils.Constants;
 
 public class BulletHellCharacters extends GameCharacters{
 
@@ -32,6 +33,6 @@ public class BulletHellCharacters extends GameCharacters{
 
     @Override
     public FinalBoss createFinalBoss() {
-        return new FinalBoss();
+        return new FinalBoss(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2, 0);
     }
 }
