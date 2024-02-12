@@ -21,7 +21,7 @@ public class GeneralEnemyTwo implements EnemyCharacter {
     private List<EnemyBullet> bullets;
 
     public GeneralEnemyTwo(float x, float y, int speed) {
-        position = new Vector2(Constants.GAME_WIDTH / 2, 600);
+        position = new Vector2(Constants.GAME_WIDTH / 2, 400);
         size = new Vector2(60, 60); // Adjust size as needed
         texture = new Texture("enemy2.png"); // Adjust texture file name
         hitbox = new Rectangle(x, y, size.x, size.y);

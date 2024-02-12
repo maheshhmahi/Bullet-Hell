@@ -15,7 +15,7 @@ public class GeneralEnemyOne implements EnemyCharacter {
 
     public GeneralEnemyOne(float x, float y, int speed) {
         // position = new Vector2(x, y); Constants.GAME_WIDTH / 2, 100
-        position = new Vector2(Constants.GAME_WIDTH / 2, 400);
+        position = new Vector2(Constants.GAME_WIDTH / 2, 300);
         size = new Vector2(60, 60); // Adjust size as needed
         texture = new Texture("enemyTexture.png"); // Adjust texture file name
         hitbox = new Rectangle(x, y, size.x, size.y);
