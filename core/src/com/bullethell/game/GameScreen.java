@@ -14,6 +14,7 @@ import com.bullethell.game.characters.enemy.EnemyCharacter;
 import com.bullethell.game.characters.hero.HeroCharacter;
 import com.bullethell.game.utils.Constants;
 import com.bullethell.game.characters.enemy.GeneralEnemyOne;
+import com.bullethell.game.characters.enemy.GeneralEnemyTwo;
 
 public class GameScreen implements Screen {
 
@@ -26,6 +27,8 @@ public class GameScreen implements Screen {
     private float backgroundMaxScrollingSpeed;
 
     GeneralEnemyOne enemy1Character;
+
+    GeneralEnemyTwo enemy2Character;
     GameCharacters gameCharacters;
 
     HeroCharacter heroCharacter;
@@ -47,6 +50,7 @@ public class GameScreen implements Screen {
         gameCharacters = new BulletHellCharacters();
         heroCharacter = gameCharacters.createHero();
         enemy1Character = gameCharacters.createGeneralEnemyOne();
+        enemy2Character = gameCharacters.createGeneralEnemyTwo();
     }
 
     @Override
@@ -61,6 +65,9 @@ public class GameScreen implements Screen {
 
         enemy1Character.render(spriteBatch);
         enemy1Character.update(deltaTime);
+
+        enemy2Character.render(spriteBatch);
+        enemy2Character.update(deltaTime);
 
         spriteBatch.end();
     }
