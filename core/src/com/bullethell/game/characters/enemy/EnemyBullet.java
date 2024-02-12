@@ -16,7 +16,7 @@ public class EnemyBullet {
     public EnemyBullet(float x, float y, float speed) {
         position = new Vector2(x, y);
         size = new Vector2(10, 10); // Adjust size as needed
-        texture = new Texture("bullet.jpg"); // Adjust texture file name
+        texture = new Texture("finalBossFire.png"); // Adjust texture file name
         hitbox = new Rectangle(x, y, size.x, size.y);
         this.speed = speed;
     }
