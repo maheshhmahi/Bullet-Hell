@@ -60,11 +60,11 @@ public class GeneralEnemyTwo implements EnemyCharacter {
     }
 
     private void spawnBullet() {
-        EnemyBullet bullet = new EnemyBullet(position.x + size.x / 2, position.y, 200); // Adjust speed as needed
+        EnemyBullet bullet = new EnemyBullet(position.x + size.x / 2, position.y, -200); // Adjust speed as needed
         bullets.add(bullet);
     }
 
-   // @Override
+    // @Override
     public void dispose() {
         texture.dispose(); // Dispose of the texture when done
     }
