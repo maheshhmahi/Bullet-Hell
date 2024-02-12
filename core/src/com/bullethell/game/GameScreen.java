@@ -15,6 +15,7 @@ import com.bullethell.game.characters.hero.HeroCharacter;
 import com.bullethell.game.utils.Constants;
 import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 import com.bullethell.game.characters.enemy.GeneralEnemyTwo;
+import com.bullethell.game.characters.enemy.EnemyBullet;
 
 public class GameScreen implements Screen {
 
@@ -29,6 +30,8 @@ public class GameScreen implements Screen {
     GeneralEnemyOne enemy1Character;
 
     GeneralEnemyTwo enemy2Character;
+
+    EnemyBullet bullet;
     GameCharacters gameCharacters;
 
     HeroCharacter heroCharacter;
@@ -51,6 +54,7 @@ public class GameScreen implements Screen {
         heroCharacter = gameCharacters.createHero();
         enemy1Character = gameCharacters.createGeneralEnemyOne();
         enemy2Character = gameCharacters.createGeneralEnemyTwo();
+        bullet = gameCharacters.createGeneralBullet();
     }
 
     @Override
