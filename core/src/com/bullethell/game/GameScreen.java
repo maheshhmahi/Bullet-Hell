@@ -1,5 +1,6 @@
 package com.bullethell.game;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -9,8 +10,10 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.bullethell.game.characters.BulletHellCharacters;
 import com.bullethell.game.characters.GameCharacters;
+import com.bullethell.game.characters.enemy.EnemyCharacter;
 import com.bullethell.game.characters.hero.HeroCharacter;
 import com.bullethell.game.utils.Constants;
+import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 
 public class GameScreen implements Screen {
 
@@ -22,6 +25,7 @@ public class GameScreen implements Screen {
     private float[] backGroundOffsets = {0,0,0,0};
     private float backgroundMaxScrollingSpeed;
 
+    GeneralEnemyOne enemy1Character;
     GameCharacters gameCharacters;
 
     HeroCharacter heroCharacter;
@@ -42,6 +46,7 @@ public class GameScreen implements Screen {
         spriteBatch = new SpriteBatch();
         gameCharacters = new BulletHellCharacters();
         heroCharacter = gameCharacters.createHero();
+        enemy1Character = gameCharacters.createGeneralEnemyOne();
     }
 
     @Override
@@ -53,6 +58,10 @@ public class GameScreen implements Screen {
         //render hero
         heroCharacter.render(spriteBatch);
         heroCharacter.update(deltaTime);
+
+        enemy1Character.render(spriteBatch);
+        enemy1Character.update(deltaTime);
+
         spriteBatch.end();
     }
 
