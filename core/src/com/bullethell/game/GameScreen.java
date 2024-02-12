@@ -10,6 +10,9 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.bullethell.game.characters.BulletHellCharacters;
 import com.bullethell.game.characters.GameCharacters;
+<<<<<<< core/src/com/bullethell/game/GameScreen.java
+import com.bullethell.game.characters.enemy.FinalBoss;
+import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 import com.bullethell.game.characters.enemy.EnemyCharacter;
 import com.bullethell.game.characters.hero.HeroCharacter;
 import com.bullethell.game.utils.Constants;
@@ -27,14 +30,19 @@ public class GameScreen implements Screen {
     private float[] backGroundOffsets = {0,0,0,0};
     private float backgroundMaxScrollingSpeed;
 
+    FinalBoss finalBoss;
+
     GeneralEnemyOne enemy1Character;
 
     GeneralEnemyTwo enemy2Character;
 
     EnemyBullet bullet;
+
     GameCharacters gameCharacters;
 
     HeroCharacter heroCharacter;
+
+    float elapsedTime = 0;
 
     GameScreen() {
 
@@ -52,13 +60,18 @@ public class GameScreen implements Screen {
         spriteBatch = new SpriteBatch();
         gameCharacters = new BulletHellCharacters();
         heroCharacter = gameCharacters.createHero();
+        finalBoss = gameCharacters.createFinalBoss();
+
         enemy1Character = gameCharacters.createGeneralEnemyOne();
         enemy2Character = gameCharacters.createGeneralEnemyTwo();
         bullet = gameCharacters.createGeneralBullet();
+
     }
 
     @Override
     public void render(float deltaTime) {
+        elapsedTime += deltaTime;
+        boolean bossVisible = false;
         spriteBatch.begin();
 
         //scrolling background
@@ -66,6 +79,15 @@ public class GameScreen implements Screen {
         //render hero
         heroCharacter.render(spriteBatch);
         heroCharacter.update(deltaTime);
+
+        if (elapsedTime >= 90 && !bossVisible) {
+            bossVisible = true; // Set flag to render continuously
+        }
+
+        if (bossVisible) {
+            finalBoss.render(spriteBatch);
+            finalBoss.update(deltaTime);
+        }
 
         enemy1Character.render(spriteBatch);
         enemy1Character.update(deltaTime);

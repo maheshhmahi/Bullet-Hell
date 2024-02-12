@@ -45,7 +45,6 @@ public class BulletHellCharacters extends GameCharacters {
 
     @Override
     public FinalBoss createFinalBoss() {
-        // Implement this method as needed
-        return new FinalBoss();
+        return new FinalBoss(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2, 0);
     }
 }
