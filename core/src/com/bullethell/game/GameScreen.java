@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.bullethell.game.characters.BulletHellCharacters;
 import com.bullethell.game.characters.GameCharacters;
-<<<<<<< core/src/com/bullethell/game/GameScreen.java
 import com.bullethell.game.characters.enemy.FinalBoss;
 import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 import com.bullethell.game.characters.enemy.EnemyCharacter;
