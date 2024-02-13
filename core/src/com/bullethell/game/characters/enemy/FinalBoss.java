@@ -1,139 +1,156 @@
 package com.bullethell.game.characters.enemy;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bullethell.game.bullet.EnemyBullet;
-import com.bullethell.game.utils.Constants;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.bullethell.game.Map;
+import com.bullethell.game.bullet.Bullet;
+import com.bullethell.game.characters.entity.Entity;
+import com.bullethell.game.characters.entity.EntityType;
+import com.bullethell.game.bullet.BulletFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class FinalBoss implements EnemyCharacter{
-    private Vector2 position;
-    private Vector2 size;
-    private Texture texture;
-    private Rectangle hitbox;
-    private int speed;
+public class FinalBoss extends Entity implements EnemyCharacter {
 
-    private float bulletTimer;
-    private float bulletInterval; // Time interval between bullet spawns
-    private List<EnemyBullet> bullets;
+    private long lastFireTime;
+    private long appearTime;
+    private int direction;
+    private List<Bullet> bullets;
 
-    private boolean circularFiring; // Flag to indicate if circular firing should start
-    private float circularTimer;
+    private BulletFactory bulletFactory;
 
-    public FinalBoss createFinalBoss(float x, float y) {
-        return new FinalBoss(x, y, speed);
+    public FinalBoss(float x, float y, Map map) {
+        super(x, y, EntityType.FINAL_BOSS_1, map);
+        this.setImage(type.getImage());
+        this.setLives(type.getLive());
+        this.setSpeed(type.getSpeed());
+        this.bullets = new ArrayList<>();
+        this.hitbox.setPosition(this.pos.x, this.pos.y);
+        this.setHitBoxSize(type.getHeight(), type.getWidth());
+        this.lastFireTime = TimeUtils.millis();
+        this.appearTime = TimeUtils.millis();
+        this.direction = 4;
+        this.bulletFactory = new BulletFactory();
     }
 
-    public FinalBoss(float x, float y, int speed) {
-
-        // position = new Vector2(x, y); Constants.GAME_WIDTH / 2, 100
-        position = new Vector2(Constants.GAME_WIDTH / 2, 550);
-        size = new Vector2(60, 60); // Adjust size as needed
-        texture = new Texture("finalBoss.png"); // Adjust texture file name
-        hitbox = new Rectangle(position.x, position.y, size.x, size.y);
-        this.speed = speed;
-        bullets = new ArrayList<>();
-        bulletTimer = 0;
-        bulletInterval = 0.2f;
+    private Vector2 getDirection() {
+        float hx, hy, cx, cy, dx, dy;
+        hx = map.getHero().getPosX() + 13;
+        hy = map.getHero().getPosY() + 10;
+        cx = hx - getPosX();
+        cy = hy - getPosY();
+        dx = (cx / (float) Math.sqrt(cx * cx + cy * cy));
+        dy = (cy / (float) Math.sqrt(cx * cx + cy * cy));
+        return new Vector2(dx, dy);
     }
 
+    private boolean isInBorder() {
+        return this.pos.x > 0 && this.pos.y > 0 && this.pos.x < 480 && this.pos.y < 800;
+    }
 
+    private boolean isCorrectShootingInterval() {
+        return TimeUtils.millis() - lastFireTime > 50;
+    }
 
-    //    @Override
-    public void update(float deltaTime) {
-        // Update enemy position (e.g., move towards the player)
-        position.x -= speed * deltaTime; // Adjust movement direction and speed as needed
-        hitbox.setPosition(position);
+    private boolean canBeRemove() {
+        return TimeUtils.millis() - appearTime > 25000;
+    }
 
-        if (MathUtils.randomBoolean(0.02f)) {
-            spawnBullet();
-        }
+    private void moveControl(float deltaTime) {
+        if (getPosY() < 600 && this.direction == 4)
+            direction = 1;
+        if (getPosX() > 480 * 2 / 3 - 50)
+            direction = 1;
+        if (getPosX() < 480 / 3 - 50)
+            direction = 2;
+        if (direction == 1)
+            this.pos.x -= getSpeed() * deltaTime;
+        if (direction == 2)
+            this.pos.x += getSpeed() * deltaTime;
+        if (direction == 3)
+            this.pos.y += getSpeed() * deltaTime;
+        if (direction == 4)
+            this.pos.y -= getSpeed() * deltaTime;
+    }
 
-        // Update bullets
-        for (EnemyBullet bullet : bullets) {
+    private void updateBullet(float deltaTime) {
+        for (Bullet bullet : bullets) {
             bullet.update(deltaTime);
         }
 
-        // Remove off-screen bullets
-        bullets.removeIf(bullet -> bullet.getPosition().y > Constants.GAME_HEIGHT);
+        long elapsedTime = TimeUtils.millis() - appearTime;
 
-        bulletTimer += deltaTime;
-        if (bulletTimer >= bulletInterval) {
-            spawnBullet(); // Spawn multiple bullets
-            bulletTimer = 0; // Reset the timer
+        // Level 1: Same as the current firing pattern, but with more bullets
+        if (elapsedTime <= 20000) {
+            if (isCorrectShootingInterval() && isInBorder() && lives > 0) {
+                this.lastFireTime = TimeUtils.millis();
+                Vector2 direction = getDirection();
+                Random r = new Random();
+
+                // Spawn more bullets
+                for (int i = 0; i < 5; i++) { // Adjust the number of bullets as needed
+                    float dx = direction.x;
+                    float dy = direction.y;
+                    dx = (float) (Math.sqrt(0.01) * r.nextGaussian()) + dx;
+                    dy = (float) (Math.sqrt(0.01) * r.nextGaussian()) + dy;
+                    this.bullets.add(bulletFactory.createMidBossBBullet(getPosX() + 40, getPosY(), dx, dy));
+                }
+            }
         }
 
-        // Add more logic for enemy behavior (e.g., shooting, AI, etc.)
+        // Level 2: Circular firing pattern downwards covering 180 degrees
+        else if (elapsedTime <= 60000) {
+            if (isCorrectShootingInterval() && isInBorder() && lives > 0) {
+                this.lastFireTime = TimeUtils.millis();
+                float startX = getPosX() + EntityType.FINAL_BOSS_1.getWidth() / 2; // Starting X position of the bullets
+                float startY = getPosY() + EntityType.FINAL_BOSS_1.getHeight() / 2; // Starting Y position of the bullets
+                int numBullets = 30; // Number of bullets in the circular pattern
+                float radius = 100; // Radius of the circular pattern
+                float startAngle = 180; // Starting angle for firing
+
+                for (int i = 0; i < numBullets; i++) {
+                    // Calculate angle for each bullet in the circular pattern
+                    float angle = startAngle + i * 180f / numBullets;
+                    // Convert angle to radians
+                    double radians = Math.toRadians(angle);
+                    // Calculate bullet direction
+                    float dx = (float) Math.cos(radians);
+                    float dy = (float) Math.sin(radians);
+                    // Set bullet speed and adjust starting position based on radius
+                    float bulletX = startX + radius * dx;
+                    float bulletY = startY + radius * dy;
+                    this.bullets.add(bulletFactory.createFinalBossBullet1(bulletX, bulletY, dx, dy));
+                }
+            }
+        }
+
+
+        // Levels 3 and 4: Implement firing patterns for these levels
+        else {
+            // Implement firing patterns for levels 3 and 4
+        }
+        if (canBeRemove()) {
+            remove = true;
+        }
     }
 
-    //    @Override
-    public void render(SpriteBatch batch) {
-        batch.draw(texture, position.x, position.y, size.x, size.y);
 
-        // Render bullets
-        for (EnemyBullet bullet : bullets) {
+    @Override
+    public void update(float deltaTime) {
+        updateBullet(deltaTime);
+        moveControl(deltaTime);
+        this.hitbox.setPosition(this.pos.x, this.pos.y);
+    }
+
+    @Override
+    public void render(SpriteBatch batch) {
+        batch.draw(image, pos.x, pos.y, getWidth(), getHeight());
+        for (Bullet bullet : bullets) {
             bullet.render(batch);
         }
     }
-    private void spawnBullet() {
-        // Straight bullet
-        EnemyBullet straightBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200); // Adjust speed as needed
-        bullets.add(straightBullet);
-
-        // Left diagonal bullet
-        EnemyBullet leftDiagonalBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200);
-        leftDiagonalBullet.setSpeedX(-100); // Adjust diagonal speed as needed
-        bullets.add(leftDiagonalBullet);
-
-        // Right diagonal bullet
-        EnemyBullet rightDiagonalBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200);
-        rightDiagonalBullet.setSpeedX(100); // Adjust diagonal speed as needed
-        bullets.add(rightDiagonalBullet);
-
-        // Left side bullet
-        EnemyBullet leftSideBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200);
-        leftSideBullet.setSpeedX(-200); // Adjust speed as needed
-        bullets.add(leftSideBullet);
-
-        // Right side bullet
-        EnemyBullet rightSideBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200);
-        rightSideBullet.setSpeedX(200); // Adjust speed as needed
-        bullets.add(rightSideBullet);
-    }
-
-
-
-    // @Override
-    public void dispose() {
-        texture.dispose(); // Dispose of the texture when done
-    }
-
-    private void spawnCircularBullets(float deltaTime) {
-        // Adjust the circular firing interval as needed
-        if (circularTimer >= 0.1f) {
-            // Calculate the direction towards the player
-            float playerX = Constants.GAME_WIDTH / 2; // Assuming player is in the middle of the screen
-            float playerY = 100; // Adjust as needed
-            float directionX = playerX - (position.x + size.x / 2);
-            float directionY = playerY - (position.y + size.y / 2);
-            float angle = MathUtils.atan2(directionY, directionX) * MathUtils.radiansToDegrees;
-
-            // Spawn bullets in a circular pattern around the boss
-            float radius = 50; // Adjust the radius of the circle
-            for (int i = 0; i < 20; i++) {
-                float x = position.x + size.x / 2 + radius * MathUtils.cosDeg(angle);
-                float y = position.y + size.y / 2 + radius * MathUtils.sinDeg(angle);
-                EnemyBullet bullet = new EnemyBullet(x, y, -200); // Adjust speed as needed
-                bullets.add(bullet);
-                angle += 360 / 20; // Increment angle for next bullet
-            }
-            circularTimer = 0;
-        }
-    }
-
 }

@@ -16,6 +16,6 @@ public abstract class GameCharacters {
 
     public abstract MidEnemyOne createMidEnemyOne();
     public abstract MidEnemyTwo createMidEnemyTwo(int posX, int posY, Map map);
-    public abstract FinalBoss createFinalBoss();
+    public abstract FinalBoss createFinalBoss(int posX, int posY, Map map);
 
 }
