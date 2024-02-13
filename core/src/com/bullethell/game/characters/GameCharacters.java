@@ -14,7 +14,7 @@ public abstract class GameCharacters {
 
     public abstract EnemyBullet createGeneralBullet();
 
-    public abstract MidEnemyOne createMidEnemyOne();
+    public abstract MidEnemyOne createMidEnemyOne(int posX, int posY, Map map, int direction);
     public abstract MidEnemyTwo createMidEnemyTwo(int posX, int posY, Map map);
     public abstract FinalBoss createFinalBoss();
 
