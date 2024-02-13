@@ -1,5 +1,6 @@
 package com.bullethell.game.characters;
 
+import com.bullethell.game.bullet.EnemyBullet;
 import com.bullethell.game.characters.enemy.*;
 import com.bullethell.game.characters.hero.Hero;
 import com.bullethell.game.characters.enemy.GeneralEnemyOne;

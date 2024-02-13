@@ -5,8 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.bullethell.game.bullet.Bullet;
+import com.bullethell.game.bullet.EnemyBullet;
 import com.bullethell.game.utils.Constants;
 
 import java.util.ArrayList;
@@ -19,6 +18,8 @@ public class FinalBoss implements EnemyCharacter{
     private Rectangle hitbox;
     private int speed;
 
+    private float bulletTimer;
+    private float bulletInterval; // Time interval between bullet spawns
     private List<EnemyBullet> bullets;
 
     public FinalBoss(float x, float y, int speed) {
@@ -30,6 +31,8 @@ public class FinalBoss implements EnemyCharacter{
         hitbox = new Rectangle(x, y, size.x, size.y);
         this.speed = speed;
         bullets = new ArrayList<>();
+        bulletTimer = 0;
+        bulletInterval = 0.2f;
     }
 
     //    @Override
@@ -50,6 +53,12 @@ public class FinalBoss implements EnemyCharacter{
         // Remove off-screen bullets
         bullets.removeIf(bullet -> bullet.getPosition().y > Constants.GAME_HEIGHT);
 
+        bulletTimer += deltaTime;
+        if (bulletTimer >= bulletInterval) {
+            spawnBullet(); // Spawn multiple bullets
+            bulletTimer = 0; // Reset the timer
+        }
+
         // Add more logic for enemy behavior (e.g., shooting, AI, etc.)
     }
 
@@ -63,9 +72,21 @@ public class FinalBoss implements EnemyCharacter{
         }
     }
     private void spawnBullet() {
-        EnemyBullet bullet = new EnemyBullet(position.x + size.x / 2, position.y, -200); // Adjust speed as needed
-        bullets.add(bullet);
+        // Straight bullet
+        EnemyBullet straightBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200); // Adjust speed as needed
+        bullets.add(straightBullet);
+
+        // Left diagonal bullet
+        EnemyBullet leftDiagonalBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200);
+        leftDiagonalBullet.setSpeedX(-100); // Adjust diagonal speed as needed
+        bullets.add(leftDiagonalBullet);
+
+        // Right diagonal bullet
+        EnemyBullet rightDiagonalBullet = new EnemyBullet(position.x + size.x / 2, position.y, -200);
+        rightDiagonalBullet.setSpeedX(100); // Adjust diagonal speed as needed
+        bullets.add(rightDiagonalBullet);
     }
+
 
     // @Override
     public void dispose() {
