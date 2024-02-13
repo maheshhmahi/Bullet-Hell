@@ -1,6 +1,5 @@
 package com.bullethell.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -12,12 +11,10 @@ import com.bullethell.game.characters.BulletHellCharacters;
 import com.bullethell.game.characters.GameCharacters;
 import com.bullethell.game.characters.enemy.FinalBoss;
 import com.bullethell.game.characters.enemy.GeneralEnemyOne;
-import com.bullethell.game.characters.enemy.EnemyCharacter;
 import com.bullethell.game.characters.hero.HeroCharacter;
 import com.bullethell.game.utils.Constants;
-import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 import com.bullethell.game.characters.enemy.GeneralEnemyTwo;
-import com.bullethell.game.characters.enemy.EnemyBullet;
+import com.bullethell.game.bullet.EnemyBullet;
 
 public class GameScreen implements Screen {
 
@@ -79,7 +76,15 @@ public class GameScreen implements Screen {
         heroCharacter.render(spriteBatch);
         heroCharacter.update(deltaTime);
 
-        if (elapsedTime >= 90 && !bossVisible) {
+
+
+        enemy1Character.render(spriteBatch);
+        enemy1Character.update(deltaTime);
+
+        enemy2Character.render(spriteBatch);
+        enemy2Character.update(deltaTime);
+
+        if (elapsedTime >= 5 && !bossVisible) {
             bossVisible = true; // Set flag to render continuously
         }
 
@@ -87,12 +92,6 @@ public class GameScreen implements Screen {
             finalBoss.render(spriteBatch);
             finalBoss.update(deltaTime);
         }
-
-        enemy1Character.render(spriteBatch);
-        enemy1Character.update(deltaTime);
-
-        enemy2Character.render(spriteBatch);
-        enemy2Character.update(deltaTime);
 
         spriteBatch.end();
     }

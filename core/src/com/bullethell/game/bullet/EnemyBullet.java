@@ -1,5 +1,5 @@
 // EnemyBullet.java
-package com.bullethell.game.characters.enemy;
+package com.bullethell.game.bullet;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,6 +13,9 @@ public class EnemyBullet {
     private Rectangle hitbox;
     private float speed;
 
+    private float speedX;
+
+
     public EnemyBullet(float x, float y, float speed) {
         position = new Vector2(x, y);
         size = new Vector2(10, 10); // Adjust size as needed
@@ -24,8 +27,10 @@ public class EnemyBullet {
     public void update(float deltaTime) {
         // Update bullet position (e.g., move upwards)
         position.y += speed * deltaTime;
+        position.x += speedX * deltaTime; // Update horizontal position
         hitbox.setPosition(position);
     }
+
 
     public void render(SpriteBatch batch) {
         batch.draw(texture, position.x, position.y, size.x, size.y);
@@ -38,4 +43,9 @@ public class EnemyBullet {
     public Vector2 getPosition() {
         return position;
     }
+
+    public void setSpeedX(float speedX) {
+        this.speedX = speedX;
+    }
+
 }
