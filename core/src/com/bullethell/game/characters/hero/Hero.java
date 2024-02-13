@@ -6,9 +6,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.bullethell.game.Map;
+import com.bullethell.game.characters.entity.Entity;
+import com.bullethell.game.characters.entity.EntityType;
 import com.bullethell.game.utils.Constants;
 
-public class Hero implements HeroCharacter{
+import java.util.ArrayList;
+
+public class Hero extends Entity implements HeroCharacter{
     private Vector2 position;
     private Vector2 size;
     private Texture texture;
@@ -24,7 +29,8 @@ public class Hero implements HeroCharacter{
     public static int downKey = Input.Keys.DOWN;
     public static int slowSpeedKey = Input.Keys.SHIFT_LEFT;
 
-    public Hero() {
+    public Hero(float x, float y, Map map) {
+        super(x, y, EntityType.HERO, map);
         position = new Vector2(Constants.GAME_WIDTH / 2, 100);
         size = new Vector2(60,60);
         texture = new Texture("playerShip1_red.png");
@@ -32,6 +38,13 @@ public class Hero implements HeroCharacter{
         boxHit = new Rectangle(position.x + size.x/2, position.y+size.y/2, size.x/60, size.y/60);
         //hero inputKeyManager todo
         acceleration = 100;
+
+        this.setImage(type.getImage());
+//        this.setHitboxImage("hitbox.png");
+        this.setHitBoxSize(type.getHeight()-40, type.getWidth()-40);
+//        SPEED = type.getSpeed();
+        this.setLives(type.getLive());
+        this.getHitbox().setPosition(this.getPosX(), this.getPosY());
     }
 
     public Vector2 getPosition() {
