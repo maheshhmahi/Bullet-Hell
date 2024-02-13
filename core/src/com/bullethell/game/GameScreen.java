@@ -77,7 +77,6 @@ public class GameScreen implements Screen {
         heroCharacter.update(deltaTime);
 
 
-
         enemy1Character.render(spriteBatch);
         enemy1Character.update(deltaTime);
 
@@ -92,7 +91,6 @@ public class GameScreen implements Screen {
             finalBoss.render(spriteBatch);
             finalBoss.update(deltaTime);
         }
-
         spriteBatch.end();
     }
 

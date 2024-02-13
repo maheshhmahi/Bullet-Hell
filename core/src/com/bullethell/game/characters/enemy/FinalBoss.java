@@ -22,18 +22,26 @@ public class FinalBoss implements EnemyCharacter{
     private float bulletInterval; // Time interval between bullet spawns
     private List<EnemyBullet> bullets;
 
+    public FinalBoss createFinalBoss(float x, float y) {
+        return new FinalBoss(x, y, speed);
+    }
+
     public FinalBoss(float x, float y, int speed) {
 
         // position = new Vector2(x, y); Constants.GAME_WIDTH / 2, 100
         position = new Vector2(Constants.GAME_WIDTH / 2, 550);
         size = new Vector2(60, 60); // Adjust size as needed
         texture = new Texture("finalBoss.png"); // Adjust texture file name
-        hitbox = new Rectangle(x, y, size.x, size.y);
+        hitbox = new Rectangle(position.x, position.y, size.x, size.y);
         this.speed = speed;
         bullets = new ArrayList<>();
         bulletTimer = 0;
         bulletInterval = 0.2f;
+
     }
+
+
+
 
     //    @Override
     public void update(float deltaTime) {
