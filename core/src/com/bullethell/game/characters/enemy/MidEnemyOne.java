@@ -21,7 +21,7 @@ public class MidEnemyOne extends Entity implements EnemyCharacter{
     List<Bullet> bullets;
 
     public MidEnemyOne(float x, float y, Map map, int direction) {
-        super(x, y, EntityType.MID_BOSS_B, map);
+        super(x, y, EntityType.MID_BOSS_A, map);
         this.setImage(type.getImage());
         this.direction = 4;
         this.setLives(type.getLive());

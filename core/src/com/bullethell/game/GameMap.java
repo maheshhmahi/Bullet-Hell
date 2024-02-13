@@ -67,7 +67,7 @@ public class GameMap extends Map {
 
         timePeriod(20000, 20020, new MidBossbPattern());
 
-        timePeriod(20000, 20020, new MidBossAPattern());
+        timePeriod(40000, 40020, new MidBossAPattern());
 
         super.update(delta);
     }
