@@ -23,7 +23,7 @@ public class MidEnemyOne extends Entity implements EnemyCharacter{
     public MidEnemyOne(float x, float y, Map map, int direction) {
         super(x, y, EntityType.MID_BOSS_B, map);
         this.setImage(type.getImage());
-        this.direction = direction;
+        this.direction = 4;
         this.setLives(type.getLive());
         this.setSpeed(type.getSpeed());
         this.bullets = new ArrayList<>();
@@ -79,12 +79,12 @@ public class MidEnemyOne extends Entity implements EnemyCharacter{
             Vector2 direction = getDirection();
             float dx = direction.x;
             float dy = direction.y;
-            this.bullets.add(bulletFactory.createMidBossBBullet(getPosX()+40, getPosY(), dx, dy));
+            this.bullets.add(bulletFactory.createMidBossABullet(getPosX()+40, getPosY(), dx, dy));
         }
 
-        if(TimeUtils.millis()-this.appearTime>15000)
+        if(TimeUtils.millis()-this.appearTime>5120)
         {
-            this.direction=3;
+            this.direction=2;
         }
 
         if(canBeRemove())

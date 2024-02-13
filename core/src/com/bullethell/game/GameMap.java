@@ -62,9 +62,9 @@ public class GameMap extends Map {
     @Override
     public void update(float delta) {
 
-//        timePeriod(1000, 1020, new MidBossbPattern());
+        timePeriod(1000, 1020, new MidBossbPattern());
 
-        timePeriod(1000, 1020, new MidBossAPattern());
+        timePeriod(20000, 20020, new MidBossAPattern());
 
         super.update(delta);
     }
