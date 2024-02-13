@@ -2,7 +2,8 @@ package com.bullethell.game.characters.entity;
 
 public enum EntityType {
 
-    MID_BOSS_B(100, 100, "midBossB.png", 80, 150),
+    MID_BOSS_B(100, 100, "monster.png", 80, 150),
+    MID_BOSS_A(100, 100, "monsterboss.png", 80, 150),
 
     HERO(50, 50, "playerShip1_red.png", 80, 200),
 

@@ -34,9 +34,9 @@ public class BulletHellCharacters extends GameCharacters {
     }
 
     @Override
-    public MidEnemyOne createMidEnemyOne() {
+    public MidEnemyOne createMidEnemyOne(int posX, int posY, Map map, int direction) {
         // Implement this method as needed
-        return new MidEnemyOne();
+        return new MidEnemyOne(posX, posY, map, direction);
     }
 
     @Override
