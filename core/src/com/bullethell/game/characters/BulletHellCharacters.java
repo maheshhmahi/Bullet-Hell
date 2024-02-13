@@ -1,6 +1,7 @@
 package com.bullethell.game.characters;
 
 import com.bullethell.game.bullet.EnemyBullet;
+import com.bullethell.game.Map;
 import com.bullethell.game.characters.enemy.*;
 import com.bullethell.game.characters.hero.Hero;
 import com.bullethell.game.utils.Constants;
@@ -9,9 +10,9 @@ public class BulletHellCharacters extends GameCharacters {
     // Implement all abstract methods declared in GameCharacters
 
     @Override
-    public Hero createHero() {
+    public Hero createHero(float x, float y, Map map) {
         // Implement this method as needed
-        return new Hero();
+        return new Hero(x, y, map);
     }
 
     @Override
@@ -39,9 +40,9 @@ public class BulletHellCharacters extends GameCharacters {
     }
 
     @Override
-    public MidEnemyTwo createMidEnemyTwo() {
+    public MidEnemyTwo createMidEnemyTwo(int posX, int posY, Map map) {
         // Implement this method as needed
-        return new MidEnemyTwo();
+        return new MidEnemyTwo(posX, posY, map);
     }
 
     @Override
