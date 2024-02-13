@@ -9,7 +9,7 @@ import com.bullethell.game.characters.enemy.GeneralEnemyOne;
 public abstract class GameCharacters {
 
     public abstract Hero createHero(float x, float y, Map map);
-    public abstract GeneralEnemyOne createGeneralEnemyOne();
+    public abstract GeneralEnemyOne createGeneralEnemyOne(int posX, int posY, Map map);
     public abstract GeneralEnemyTwo createGeneralEnemyTwo();
 
     public abstract EnemyBullet createGeneralBullet();
