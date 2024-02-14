@@ -9,11 +9,13 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.characters.enemy.pattern.EnemyPattern;
-<<<<<<< HEAD
+
 import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
-=======
 import com.bullethell.game.characters.enemy.pattern.MidBossAPattern;
->>>>>>> ca4f6e3031213a8586f692cf9090668419868bfe
+
+import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
+
+import com.bullethell.game.characters.enemy.pattern.MidBossAPattern;
 import com.bullethell.game.characters.enemy.pattern.MidBossbPattern;
 import com.bullethell.game.characters.enemy.pattern.GeneralEnemyaPattern;
 import com.bullethell.game.characters.hero.Hero;
@@ -67,16 +69,18 @@ public class GameMap extends Map {
     @Override
     public void update(float delta) {
 
-<<<<<<< HEAD
+
         timePeriod(1000, 1020, new MidBossbPattern());
         timePeriod(1050, 2500, new FinalBossPattern());
-=======
+
+        timePeriod(1000, 1020, new MidBossbPattern());
+        timePeriod(1050, 2500, new FinalBossPattern());
         timePeriod(1000, 1020, new GeneralEnemyaPattern());
 
         timePeriod(20000, 20020, new MidBossbPattern());
 
         timePeriod(40000, 40020, new MidBossAPattern());
->>>>>>> ca4f6e3031213a8586f692cf9090668419868bfe
+
 
         super.update(delta);
     }
