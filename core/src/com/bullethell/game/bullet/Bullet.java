@@ -56,3 +56,4 @@ public abstract class Bullet {
         this.dy = dy;
     }
 }
+
