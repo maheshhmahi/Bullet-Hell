@@ -25,6 +25,7 @@ public class GeneralEnemyOne extends Entity implements EnemyCharacter {
     private int speed;
 
     private List<EnemyBullet> bullets;
+    private float timeSinceLastBullet;
 
     public GeneralEnemyOne(float x, float y, Map map) {
         super(x, y, EntityType.GEN_ENEMY_A, map);
@@ -34,6 +35,8 @@ public class GeneralEnemyOne extends Entity implements EnemyCharacter {
         hitbox = new Rectangle(x, y, size.x, size.y);
         this.speed = EntityType.GEN_ENEMY_A.getSpeed();
         bullets = new ArrayList<>();
+        timeSinceLastBullet = 0;
+
     }
 
 //    @Override
@@ -46,7 +49,7 @@ public class GeneralEnemyOne extends Entity implements EnemyCharacter {
         position.x -= speed * deltaTime;
 
         // Spawn bullets at a certain rate
-        if (MathUtils.randomBoolean(0.02f)) {
+        if (MathUtils.randomBoolean(0.1f)) {
             spawnBullet();
         }
 

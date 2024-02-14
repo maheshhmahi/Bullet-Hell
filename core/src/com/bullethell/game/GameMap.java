@@ -74,7 +74,7 @@ public class GameMap extends Map {
         timePeriod(7000, 7020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
         timePeriod(20000, 20020, new MidBossbPattern());
         timePeriod(40000, 40020, new MidBossAPattern());
-        timePeriod(40000, 90020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
+        timePeriod(40000, 40020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
 
 
         super.update(delta);
