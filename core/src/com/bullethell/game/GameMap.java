@@ -8,16 +8,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.bullethell.game.characters.enemy.pattern.EnemyPattern;
+import com.bullethell.game.characters.enemy.pattern.*;
 
-import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
-import com.bullethell.game.characters.enemy.pattern.MidBossAPattern;
-
-import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
-
-import com.bullethell.game.characters.enemy.pattern.MidBossAPattern;
-import com.bullethell.game.characters.enemy.pattern.MidBossbPattern;
-import com.bullethell.game.characters.enemy.pattern.GeneralEnemyaPattern;
 import com.bullethell.game.characters.hero.Hero;
 
 import java.util.ArrayList;
@@ -74,7 +66,8 @@ public class GameMap extends Map {
         timePeriod(7000, 7020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
         timePeriod(20000, 20020, new MidBossbPattern());
         timePeriod(40000, 40020, new MidBossAPattern());
-        timePeriod(40000, 90020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
+        timePeriod(40000, 40020, new FinalBossPattern());
+
 
 
         super.update(delta);

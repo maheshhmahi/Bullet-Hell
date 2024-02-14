@@ -47,6 +47,7 @@ public class BulletHellCharacters extends GameCharacters {
 
     @Override
     public FinalBoss createFinalBoss(int posX, int posY, Map map) {
+
         return new FinalBoss(posX, posY, map);
     }
 }

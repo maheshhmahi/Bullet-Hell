@@ -37,15 +37,17 @@ public class FinalBoss extends Entity implements EnemyCharacter {
         this.bulletFactory = new BulletFactory();
     }
 
-    private Vector2 getDirection() {
+    private Vector2 getDirection()
+    {
         float hx, hy, cx, cy, dx, dy;
-        hx = map.getHero().getPosX() + 13;
-        hy = map.getHero().getPosY() + 10;
+        hx = map.getHero().getPosX()+13;
+        hy = map.getHero().getPosY()+10;
         cx = hx - getPosX();
         cy = hy - getPosY();
-        dx = (cx / (float) Math.sqrt(cx * cx + cy * cy));
-        dy = (cy / (float) Math.sqrt(cx * cx + cy * cy));
-        return new Vector2(dx, dy);
+        dx = (cx/(float)Math.sqrt(cx * cx + cy * cy));
+        dy= (cy/(float)Math.sqrt(cx * cx + cy * cy));
+        Vector2 ret = new Vector2(dx,dy);
+        return ret;
     }
 
     private boolean isInBorder() {
@@ -61,19 +63,19 @@ public class FinalBoss extends Entity implements EnemyCharacter {
     }
 
     private void moveControl(float deltaTime) {
-        if (getPosY() < 600 && this.direction == 4)
+        if(getPosY() < 600 && this.direction == 4)
             direction = 1;
-        if (getPosX() > 480 * 2 / 3 - 50)
-            direction = 1;
-        if (getPosX() < 480 / 3 - 50)
-            direction = 2;
-        if (direction == 1)
+        if(getPosX() > 480*2/3-50)
+            direction=1;
+        if(getPosX() < 480/3-50)
+            direction=2;
+        if(direction == 1)
             this.pos.x -= getSpeed() * deltaTime;
-        if (direction == 2)
+        if(direction == 2)
             this.pos.x += getSpeed() * deltaTime;
-        if (direction == 3)
+        if(direction == 3)
             this.pos.y += getSpeed() * deltaTime;
-        if (direction == 4)
+        if(direction == 4)
             this.pos.y -= getSpeed() * deltaTime;
     }
 
@@ -85,7 +87,7 @@ public class FinalBoss extends Entity implements EnemyCharacter {
         long elapsedTime = TimeUtils.millis() - appearTime;
 
         // Level 1: Same as the current firing pattern, but with more bullets
-        if (elapsedTime <= 20000) {
+        if (elapsedTime <= 40000) {
             if (isCorrectShootingInterval() && isInBorder() && lives > 0) {
                 this.lastFireTime = TimeUtils.millis();
                 Vector2 direction = getDirection();
@@ -103,7 +105,7 @@ public class FinalBoss extends Entity implements EnemyCharacter {
         }
 
         // Level 2: Scattered firing pattern covering a wide area
-        else if (elapsedTime <= 40000) { // Adjust the time as needed
+        else if (elapsedTime <= 6000) { // Adjust the time as needed
             if (isCorrectShootingInterval() && isInBorder() && lives > 0) {
                 this.lastFireTime = TimeUtils.millis();
                 float startX = getPosX() + EntityType.FINAL_BOSS_1.getWidth() / 2; // Starting X position of the bullets
