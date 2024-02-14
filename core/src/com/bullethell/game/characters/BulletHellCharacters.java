@@ -16,9 +16,9 @@ public class BulletHellCharacters extends GameCharacters {
     }
 
     @Override
-    public GeneralEnemyOne createGeneralEnemyOne() {
+    public GeneralEnemyOne createGeneralEnemyOne(int posX, int posY, Map map) {
         // Implement this method as needed
-        return new GeneralEnemyOne(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2, 10);
+        return new GeneralEnemyOne(posX, posY, map);
     }
 
     @Override
@@ -34,9 +34,9 @@ public class BulletHellCharacters extends GameCharacters {
     }
 
     @Override
-    public MidEnemyOne createMidEnemyOne() {
+    public MidEnemyOne createMidEnemyOne(int posX, int posY, Map map, int direction) {
         // Implement this method as needed
-        return new MidEnemyOne();
+        return new MidEnemyOne(posX, posY, map, direction);
     }
 
     @Override
