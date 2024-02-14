@@ -102,28 +102,29 @@ public class FinalBoss extends Entity implements EnemyCharacter {
             }
         }
 
-        // Level 2: Circular firing pattern downwards covering 180 degrees
-        else if (elapsedTime <= 60000) {
+        // Level 2: Scattered firing pattern covering a wide area
+        else if (elapsedTime <= 40000) { // Adjust the time as needed
             if (isCorrectShootingInterval() && isInBorder() && lives > 0) {
                 this.lastFireTime = TimeUtils.millis();
                 float startX = getPosX() + EntityType.FINAL_BOSS_1.getWidth() / 2; // Starting X position of the bullets
                 float startY = getPosY() + EntityType.FINAL_BOSS_1.getHeight() / 2; // Starting Y position of the bullets
-                int numBullets = 30; // Number of bullets in the circular pattern
-                float radius = 100; // Radius of the circular pattern
-                float startAngle = 180; // Starting angle for firing
+                int numBullets = 15; // Number of bullets
 
                 for (int i = 0; i < numBullets; i++) {
-                    // Calculate angle for each bullet in the circular pattern
-                    float angle = startAngle + i * 180f / numBullets;
-                    // Convert angle to radians
-                    double radians = Math.toRadians(angle);
-                    // Calculate bullet direction
-                    float dx = (float) Math.cos(radians);
-                    float dy = (float) Math.sin(radians);
-                    // Set bullet speed and adjust starting position based on radius
-                    float bulletX = startX + radius * dx;
-                    float bulletY = startY + radius * dy;
-                    this.bullets.add(bulletFactory.createFinalBossBullet1(bulletX, bulletY, dx, dy));
+                    // Generate random angle and distance from the boss
+                    float angle = MathUtils.random(0, 360); // Random angle in degrees
+                    float distance = MathUtils.random(20, 80); // Random distance from boss
+
+                    // Calculate bullet direction using trigonometry
+                    float dx = MathUtils.cosDeg(angle);
+                    float dy = MathUtils.sinDeg(angle);
+
+                    // Calculate bullet position
+                    float bulletX = startX + distance * dx;
+                    float bulletY = startY + distance * dy;
+
+                    // Create and add bullet to the list
+                    this.bullets.add(bulletFactory.createFinalBossBullet(bulletX, bulletY, dx, dy));
                 }
             }
         }

@@ -10,7 +10,6 @@ public class MidBossbPattern implements EnemyPattern {
     @Override
     public void addEnemy(List<Entity> entities, Map map) {
         entities.add(characters.createMidEnemyTwo(200, 800, map));
-        entities.add(characters.createFinalBoss(200, 800, map));
     }
 
 }

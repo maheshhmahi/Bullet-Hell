@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.characters.enemy.pattern.EnemyPattern;
+import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
 import com.bullethell.game.characters.enemy.pattern.MidBossbPattern;
 import com.bullethell.game.characters.hero.Hero;
 
@@ -62,6 +63,7 @@ public class GameMap extends Map {
     public void update(float delta) {
 
         timePeriod(1000, 1020, new MidBossbPattern());
+        timePeriod(1050, 2500, new FinalBossPattern());
 
         super.update(delta);
     }
