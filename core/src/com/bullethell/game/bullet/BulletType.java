@@ -4,6 +4,7 @@ public enum BulletType {
 
     MID_BOSS_B("midBossbBullet.png", 300),
     MID_BOSS_A("midBossABullet.jpeg", 200);
+    FINAL_BOSS_1("FinalBossBullet1.png", 300);
     private String image;
     private int speed;
 
