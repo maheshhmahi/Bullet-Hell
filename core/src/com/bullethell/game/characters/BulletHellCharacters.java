@@ -1,6 +1,7 @@
 package com.bullethell.game.characters;
 
 import com.bullethell.game.bullet.EnemyBullet;
+import com.bullethell.game.bullet.GeneralEnemyTwoBullet;
 import com.bullethell.game.Map;
 import com.bullethell.game.characters.enemy.*;
 import com.bullethell.game.characters.hero.Hero;
@@ -31,6 +32,12 @@ public class BulletHellCharacters extends GameCharacters {
     public EnemyBullet createGeneralBullet() {
         // Implement this method as needed
         return new EnemyBullet(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2, 0);
+    }
+
+     @Override
+    public GeneralEnemyTwoBullet createGeneralEnemyTwoBullet() {
+        // Implement this method as needed
+        return new GeneralEnemyTwoBullet(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2, 0,0);
     }
 
     @Override
