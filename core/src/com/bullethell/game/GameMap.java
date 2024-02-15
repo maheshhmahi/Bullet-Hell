@@ -18,6 +18,7 @@ import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
 import com.bullethell.game.characters.enemy.pattern.MidBossAPattern;
 import com.bullethell.game.characters.enemy.pattern.MidBossbPattern;
 import com.bullethell.game.characters.enemy.pattern.GeneralEnemyaPattern;
+import com.bullethell.game.characters.enemy.pattern.GeneralEnemybPattern;
 import com.bullethell.game.characters.hero.Hero;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class GameMap extends Map {
     public void update(float delta) {
 
         timePeriod(1000, 1020, new GeneralEnemyaPattern());
+        timePeriod(4000, 4020, new GeneralEnemybPattern());
         timePeriod(4000, 4020, new MidBossbPattern()); // Adjusted timing for the first MidBossbPattern
         timePeriod(7000, 7020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
         timePeriod(20000, 20020, new MidBossbPattern());
