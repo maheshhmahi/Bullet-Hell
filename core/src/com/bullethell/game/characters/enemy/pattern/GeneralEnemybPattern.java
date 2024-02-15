@@ -14,6 +14,7 @@ public class GeneralEnemybPattern implements EnemyPattern {
         entities.add(characters.createGeneralEnemyTwo(600, 700, map));
         entities.add(characters.createGeneralEnemyTwo(700, 700, map));
         entities.add(characters.createGeneralEnemyTwo(800, 700, map));
+        entities.add(characters.createGeneralEnemyTwo(900, 700, map));
     }
 
 }
