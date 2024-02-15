@@ -56,7 +56,7 @@ public class MidEnemyTwo extends Entity implements EnemyCharacter{
     }
 
     private boolean canBeRemove() {
-        return TimeUtils.millis()-this.appearTime>25000;
+        return TimeUtils.millis()-this.appearTime>35020;
     }
 
     private void moveControl(float deltaTime) {

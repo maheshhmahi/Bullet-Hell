@@ -37,7 +37,7 @@ public class GeneralEnemyTwo extends Entity implements EnemyCharacter {
     }
 
     public void update(float deltaTime) {
-        position.x -= speed * deltaTime;
+        position.x += speed * deltaTime;
 
         // Spawn bullets at a certain rate with random directions
         if (MathUtils.randomBoolean(0.1f)) {
@@ -50,7 +50,6 @@ public class GeneralEnemyTwo extends Entity implements EnemyCharacter {
         }
 
      // Remove off-screen bullets
-//        bullets.removeIf(bullet -> bullet.getPosition().y > Constants.GAME_HEIGHT);
         bullets.removeIf(bullet -> {
             bullet.update(deltaTime);
             return bullet.isOffScreen(Constants.GAME_HEIGHT);
