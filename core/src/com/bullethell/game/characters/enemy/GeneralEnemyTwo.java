@@ -50,7 +50,11 @@ public class GeneralEnemyTwo extends Entity implements EnemyCharacter {
         }
 
      // Remove off-screen bullets
-        bullets.removeIf(bullet -> bullet.getPosition().y > Constants.GAME_HEIGHT);
+//        bullets.removeIf(bullet -> bullet.getPosition().y > Constants.GAME_HEIGHT);
+        bullets.removeIf(bullet -> {
+            bullet.update(deltaTime);
+            return bullet.isOffScreen(Constants.GAME_HEIGHT);
+        });
     }
 
     public void render(SpriteBatch batch) {

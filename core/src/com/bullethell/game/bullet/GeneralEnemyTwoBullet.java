@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.bullethell.game.utils.Constants;
 
 public class GeneralEnemyTwoBullet {
     private Vector2 position;
@@ -20,6 +21,10 @@ public class GeneralEnemyTwoBullet {
         hitbox = new Rectangle(x, y, size.x, size.y);
         this.speedX = speedX;
         this.speedY = speedY;
+    }
+
+    public boolean isOffScreen(float screenHeight) {
+        return position.y > screenHeight || position.y < 0 || position.x < 0 || position.x > Constants.GAME_WIDTH;
     }
 
     public void update(float deltaTime) {
