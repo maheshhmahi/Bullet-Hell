@@ -1,4 +1,3 @@
-// GeneralEnemyTwo.java
 package com.bullethell.game.characters.enemy;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -6,37 +5,51 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
+import com.bullethell.game.Map;
+import com.bullethell.game.bullet.EnemyBullet;
+import com.bullethell.game.characters.entity.Entity;
+import com.bullethell.game.characters.entity.EntityType;
 import com.bullethell.game.bullet.EnemyBullet;
 import com.bullethell.game.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeneralEnemyTwo implements EnemyCharacter {
+public class GeneralEnemyTwo extends Entity implements EnemyCharacter {
     private Vector2 position;
     private Vector2 size;
+
     private Texture texture;
     private Rectangle hitbox;
     private int speed;
 
     private List<EnemyBullet> bullets;
+    private float timeSinceLastBullet;
 
-    public GeneralEnemyTwo(float x, float y, int speed) {
-        position = new Vector2(Constants.GAME_WIDTH / 2, 400);
-        size = new Vector2(60, 60); // Adjust size as needed
+    public GeneralEnemyTwo(float x, float y, Map map) {
+        super(x, y, EntityType.GEN_ENEMY_B, map);
+        position = new Vector2(getPosX() , getPosY());
+        size = new Vector2(80, 80); // Adjust size as needed
         texture = new Texture("enemy2.png"); // Adjust texture file name
         hitbox = new Rectangle(x, y, size.x, size.y);
-        this.speed = speed;
+        this.speed = EntityType.GEN_ENEMY_B.getSpeed();
         bullets = new ArrayList<>();
+        timeSinceLastBullet = 0;
+
     }
 
-    // @Override
+//    @Override
     public void update(float deltaTime) {
-        // Update enemy position
+        // Update enemy position (e.g., move towards the player)
+//        position.x -= speed * deltaTime; // Adjust movement direction and speed as needed
+//        hitbox.setPosition(position);
+
+        // Add more logic for enemy behavior (e.g., shooting, AI, etc.)
         position.x -= speed * deltaTime;
 
         // Spawn bullets at a certain rate
-        if (MathUtils.randomBoolean(0.02f)) {
+        if (MathUtils.randomBoolean(0.1f)) {
             spawnBullet();
         }
 
@@ -49,9 +62,9 @@ public class GeneralEnemyTwo implements EnemyCharacter {
         bullets.removeIf(bullet -> bullet.getPosition().y > Constants.GAME_HEIGHT);
     }
 
-    //@Override
+//    @Override
     public void render(SpriteBatch batch) {
-        // Render enemy
+//        batch.draw(texture, position.x, position.y, size.x, size.y);
         batch.draw(texture, position.x, position.y, size.x, size.y);
 
         // Render bullets
@@ -63,10 +76,5 @@ public class GeneralEnemyTwo implements EnemyCharacter {
     private void spawnBullet() {
         EnemyBullet bullet = new EnemyBullet(position.x + size.x / 2, position.y, -200); // Adjust speed as needed
         bullets.add(bullet);
-    }
-
-    // @Override
-    public void dispose() {
-        texture.dispose(); // Dispose of the texture when done
     }
 }

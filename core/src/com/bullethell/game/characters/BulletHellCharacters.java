@@ -22,9 +22,9 @@ public class BulletHellCharacters extends GameCharacters {
     }
 
     @Override
-    public GeneralEnemyTwo createGeneralEnemyTwo() {
+    public GeneralEnemyTwo createGeneralEnemyTwo(int posX, int posY, Map map) {
         // Implement this method as needed
-        return new GeneralEnemyTwo(Constants.GAME_WIDTH / 2, Constants.GAME_HEIGHT / 2, 0);
+        return new GeneralEnemyTwo(posX, posY, map);
     }
 
     @Override

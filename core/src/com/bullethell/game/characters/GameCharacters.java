@@ -10,7 +10,7 @@ public abstract class GameCharacters {
 
     public abstract Hero createHero(float x, float y, Map map);
     public abstract GeneralEnemyOne createGeneralEnemyOne(int posX, int posY, Map map);
-    public abstract GeneralEnemyTwo createGeneralEnemyTwo();
+    public abstract GeneralEnemyTwo createGeneralEnemyTwo(int posX, int posY, Map map);
 
     public abstract EnemyBullet createGeneralBullet();
 
