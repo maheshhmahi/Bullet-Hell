@@ -57,7 +57,7 @@ public class FinalBoss extends Entity implements EnemyCharacter {
     }
 
     private boolean canBeRemove() {
-        return TimeUtils.millis() - appearTime > 25000;
+        return TimeUtils.millis() - appearTime > 70020;
     }
 
     private void moveControl(float deltaTime) {
@@ -103,7 +103,7 @@ public class FinalBoss extends Entity implements EnemyCharacter {
         }
 
         // Level 2: Scattered firing pattern covering a wide area
-        else if (elapsedTime <= 40000) { // Adjust the time as needed
+        else if (elapsedTime <= 80000) { // Adjust the time as needed
             if (isCorrectShootingInterval() && isInBorder() && lives > 0) {
                 this.lastFireTime = TimeUtils.millis();
                 float startX = getPosX() + EntityType.FINAL_BOSS_1.getWidth() / 2; // Starting X position of the bullets

@@ -71,13 +71,10 @@ public class GameMap extends Map {
     public void update(float delta) {
 
         timePeriod(1000, 1020, new GeneralEnemyaPattern());
-        timePeriod(4000, 4020, new GeneralEnemybPattern());
-        timePeriod(4000, 4020, new MidBossbPattern()); // Adjusted timing for the first MidBossbPattern
-        timePeriod(7000, 7020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
-        timePeriod(20000, 20020, new MidBossbPattern());
-        timePeriod(40000, 40020, new MidBossAPattern());
-        timePeriod(40000, 40020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
-
+        timePeriod(8000, 8020, new GeneralEnemybPattern());
+        timePeriod(25000, 25020, new MidBossAPattern());
+        timePeriod(35000, 35020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
+        timePeriod(50000, 50020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
 
         super.update(delta);
     }

@@ -10,7 +10,6 @@ import com.bullethell.game.characters.entity.EntityType;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class MidEnemyOne extends Entity implements EnemyCharacter{
     private long lastFireTime;
@@ -55,7 +54,7 @@ public class MidEnemyOne extends Entity implements EnemyCharacter{
     }
 
     private boolean canBeRemove() {
-        return TimeUtils.millis()-this.appearTime>25000;
+        return TimeUtils.millis()-this.appearTime>25020;
     }
 
     private void moveControl(float deltaTime) {
@@ -73,7 +72,7 @@ public class MidEnemyOne extends Entity implements EnemyCharacter{
         for(Bullet bullet: bullets) {
             bullet.update(deltaTime);
         }
-        if(TimeUtils.millis()-this.lastFireTime>200 && isInBorder() && lives>0)
+        if(TimeUtils.millis()-this.lastFireTime>400 && isInBorder() && lives>0)
         {
             this.lastFireTime = TimeUtils.millis();
             Vector2 direction = getDirection();

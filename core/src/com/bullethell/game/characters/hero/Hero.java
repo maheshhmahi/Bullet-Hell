@@ -40,9 +40,7 @@ public class Hero extends Entity implements HeroCharacter{
         acceleration = 100;
 
         this.setImage(type.getImage());
-//        this.setHitboxImage("hitbox.png");
         this.setHitBoxSize(type.getHeight()-40, type.getWidth()-40);
-//        SPEED = type.getSpeed();
         this.setLives(type.getLive());
         this.getHitbox().setPosition(this.getPosX(), this.getPosY());
     }
