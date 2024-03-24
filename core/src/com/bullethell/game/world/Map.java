@@ -1,4 +1,4 @@
-package com.bullethell.game;
+package com.bullethell.game.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,6 +14,19 @@ public abstract class Map {
     protected Entity hero;
     protected List<Entity> entities;
     protected long startTime;
+    private long lastHitTime = 0;
+    private boolean invincible = false;
+    private boolean noBullet = false;
+    protected boolean isWin;
+    protected long winTime;
+
+    public long getWinTime() {
+        return winTime;
+    }
+
+    public boolean isWin() {
+        return isWin;
+    }
 
     public Map() {
         startTime = TimeUtils.millis();
@@ -27,6 +40,36 @@ public abstract class Map {
         }
     }
 
+    public void setInvincible(boolean invincible)
+    {
+        this.invincible = invincible;
+    }
+    public boolean getInvincible()
+    {
+        return this.invincible;
+    }
+
+    public boolean getNoBullet()
+    {
+        return this.noBullet;
+    }
+    public void setNoBullet(boolean noBullet)
+    {
+        this.noBullet = noBullet;
+    }
+
+
+
+    public void setLastHitTime(long lastHitTime)
+    {
+        this.lastHitTime = lastHitTime;
+    }
+    public long getLastHitTime()
+    {
+        return this.lastHitTime;
+    }
+
+
     public void update(float delta) {
         hero.update(delta);
         List<Entity> entitiesToRemove = new ArrayList<>();
@@ -36,10 +79,18 @@ public abstract class Map {
                 entitiesToRemove.add(entity);
             }
         }
+        if(TimeUtils.nanoTime()-lastHitTime>5000000000L) {
+            this.invincible = false;
+        }
+        if(TimeUtils.nanoTime()-lastHitTime>2000000000L) {
+            this.noBullet = false;
+        }
         entities.removeAll(entitiesToRemove);
+
     }
 
-    public Entity getHero() {
+    public Entity getHero()
+    {
         return this.hero;
     }
 
@@ -52,5 +103,9 @@ public abstract class Map {
     public abstract int getHeight();
 
     public abstract int getLayers();
+
+    public List<Entity> getEntities() {
+        return entities;
+    }
 
 }

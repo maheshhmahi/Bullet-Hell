@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bullethell.game.Map;
+import com.bullethell.game.world.Map;
 import com.bullethell.game.bullet.EnemyBullet;
 import com.bullethell.game.characters.entity.Entity;
 import com.bullethell.game.characters.entity.EntityType;

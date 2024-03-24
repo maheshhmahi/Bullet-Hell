@@ -1,6 +1,6 @@
 package com.bullethell.game.characters.enemy.pattern;
 
-import com.bullethell.game.Map;
+import com.bullethell.game.world.Map;
 import com.bullethell.game.characters.entity.Entity;
 
 import java.util.List;

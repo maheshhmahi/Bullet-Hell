@@ -6,12 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bullethell.game.Map;
+import com.bullethell.game.world.Map;
 import com.bullethell.game.characters.entity.Entity;
 import com.bullethell.game.characters.entity.EntityType;
 import com.bullethell.game.utils.Constants;
-
-import java.util.ArrayList;
 
 public class Hero extends Entity implements HeroCharacter{
     private Vector2 position;

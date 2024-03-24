@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.bullethell.game.Map;
+import com.bullethell.game.world.Map;
 import com.bullethell.game.bullet.BulletFactory;
 
 public abstract class Entity {

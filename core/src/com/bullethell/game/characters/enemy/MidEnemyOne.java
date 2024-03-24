@@ -3,7 +3,7 @@ package com.bullethell.game.characters.enemy;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.bullethell.game.Map;
+import com.bullethell.game.world.Map;
 import com.bullethell.game.bullet.Bullet;
 import com.bullethell.game.characters.entity.Entity;
 import com.bullethell.game.characters.entity.EntityType;
