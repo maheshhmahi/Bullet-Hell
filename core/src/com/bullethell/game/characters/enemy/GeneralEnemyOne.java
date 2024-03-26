@@ -66,7 +66,7 @@ public class GeneralEnemyOne extends Entity implements EnemyCharacter {
     }
 
     private void spawnBullet() {
-        EnemyBullet bullet = new EnemyBullet(position.x + size.x / 2, position.y, -200); // Adjust speed as needed
+        EnemyBullet bullet = new EnemyBullet(position.x + size.x / 2, position.y, -100); // Adjust speed as needed
         bullets.add(bullet);
     }
 }
