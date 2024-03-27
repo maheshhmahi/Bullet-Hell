@@ -1,8 +1,6 @@
 package com.bullethell.game.bullet;
 
-import com.bullethell.game.bullet.actions.ShootAround;
 import com.bullethell.game.bullet.factory.BulletFactory;
-import com.bullethell.game.bullet.factory.EnemyABulletFactory;
 import com.bullethell.game.bullet.factory.HeroBulletFactory;
 import com.bullethell.game.bullet.factory.MidbossbBulletFactory;
 
