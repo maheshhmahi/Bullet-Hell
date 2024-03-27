@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.characters.enemy.pattern.EnemyPattern;
-import com.bullethell.game.characters.enemy.pattern.FinalBossPattern;
 import com.bullethell.game.characters.enemy.pattern.MidBossbPattern;
 import com.bullethell.game.characters.hero.Hero;
 import com.bullethell.game.utils.Constants;
@@ -76,9 +75,9 @@ public class BeginGameMap extends Map {
 //        timePeriod(1000, 1020, new GeneralEnemyaPattern());
 //        timePeriod(22000, 22020, new GeneralEnemybPattern());
 //        timePeriod(45000, 45020, new MidBossAPattern());
-//        timePeriod(1000, 1020, new GeneralEnemyaPattern()); // Adjusted timing for the second MidBossbPattern
-//        timePeriod(2000, 2020, new GeneralEnemyaPattern()); // Adjusted timing for the second MidBossbPattern
-        timePeriod(1000, 1020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
+        timePeriod(1000, 1020, new EnemyOnePattern()); // Adjusted timing for the second MidBossbPattern
+        timePeriod(2000, 2020, new EnemyTwoPattern()); // Adjusted timing for the second MidBossbPattern
+        timePeriod(3000, 3020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
 //        timePeriod(10000, 10020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
         timePeriod(1800, 2000, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
 
