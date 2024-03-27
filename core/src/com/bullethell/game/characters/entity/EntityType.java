@@ -7,7 +7,7 @@ public enum EntityType {
     HERO(50, 50, "playerShip1_red.png", 80, 10),
     FINAL_BOSS(100,100 ,"finalBoss.png" ,65,30 ),
     ENEMY_2(50, 50, "enemy2.png", 40, 1),
-    ENEMY_1(75, 50, "enemyTexture.png", 40, 15);
+    ENEMY_1(75, 100, "enemyTexture.png", 40, 15);
 
     private int height, width;
     private String image;
