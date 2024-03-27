@@ -6,14 +6,11 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.bullet.Bullet;
 import com.bullethell.game.world.Map;
 import com.bullethell.game.characters.entity.Entity;
 import com.bullethell.game.characters.entity.EntityType;
-import com.bullethell.game.utils.Constants;
 
 import java.util.ArrayList;
 
@@ -29,14 +26,14 @@ public class Hero extends Entity {
 
     public Hero(float x, float y, Map map) {
         super(x, y, EntityType.HERO, map);
-        entityInitialization();
+        setEntity();
         batch = new SpriteBatch();
         shootSound = Gdx.audio.newSound(Gdx.files.internal("playerShoot.mp3"));
         collisionSound = Gdx.audio.newSound(Gdx.files.internal("explode.mp3"));
     }
 
     @Override
-    protected void entityInitialization() {
+    protected void setEntity() {
         hitbox.setPosition(this.getPosX()-15, this.getPosY());
         hitbox.setSize(10, 10);
         inputManager = new InputManager(this);
