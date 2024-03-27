@@ -1,6 +1,7 @@
 package com.bullethell.game.characters.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.bullet.Bullet;
@@ -41,18 +42,18 @@ public class FinalBoss extends Entity {
     public void update(float deltaTime) {
         // Update bullets
         for(Bullet bullet: bullets) {
-            bullet.update(deltaTime); // call this.shootingAction.shoot(deltaTime, speed)
+            bullet.update(deltaTime);
             if(bullet.remove) {
                 bulletsToRemove.add(bullet);
             }
         }
         // Call firing patterns based on direction
         if(!die){
-            if(this.direction == 2 || this.direction == 6) // call firing_pattern_1 method
+            if(this.direction == 2 || this.direction == 6)
                 firing_pattern_1();
-            else if(this.direction == 4 || this.direction == 8) // call firing_pattern_2 method
+            else if(this.direction == 4 || this.direction == 8)
                 firing_pattern_2();
-            else if(this.direction == 1 || this.direction == 7) // call firing_pattern_3 method
+            else if(this.direction == 1 || this.direction == 7)
                 firing_pattern_3();
         }
         // Move along the boss path
@@ -121,17 +122,13 @@ public class FinalBoss extends Entity {
 
 
     // Firing pattern 1
-    private void firing_pattern_1(){
+    private void firing_pattern_1() {
         this.lastFireTime = TimeUtils.millis();
-        Vector2 direction = getDirection(); // call getDirection method
-        Random r = new Random();
-        float dx = direction.x;
-        float dy = direction.y;
-        dx = (float)(Math.sqrt(0.01)*r.nextGaussian()) + dx;
-        dy = (float)(Math.sqrt(0.01)*r.nextGaussian()) + dy;
-        this.bullets.add(getBulletManager().createMidBossBBullet(getPosX() + 35, getPosY() - 40, dx, dy)); //around
-    }
+        float bulletSpeed = 5; // Adjust bullet speed as needed
 
+        // Add bullets firing downwards
+        this.bullets.add(getBulletManager().createMidBossBBullet(getPosX() + 35, getPosY() - 40, 0, -bulletSpeed));
+    }
 
     // Firing pattern 2
     private void firing_pattern_2(){
