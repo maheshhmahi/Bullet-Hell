@@ -9,10 +9,9 @@ public class GeneralEnemyaPattern implements EnemyPattern {
 
     @Override
     public void addEnemy(List<Entity> entities, Map map) {
-        entities.add(characters.createGeneralEnemyOne(800, 700, map));
-        entities.add(characters.createGeneralEnemyOne(700, 600, map));
-        entities.add(characters.createGeneralEnemyOne(600, 500, map));
-        entities.add(characters.createGeneralEnemyOne(500, 400, map));
+        entities.add(characters.createEnemyA(300, 800, map, 4));
+        entities.add(characters.createEnemyA(100, 800, map, 4));
+//        entities.add(characters.createEnemyB(-200, 600, map));
     }
 
 }

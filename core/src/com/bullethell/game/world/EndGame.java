@@ -14,9 +14,9 @@ public class EndGame {
 
     public EndGame()
     {
-        bg = new Texture("test_back.jpg");
+        bg = new Texture("menu.jpg");
 //        getName = new NameTextInput();
-        menuButton = new Button(new Texture("emptyButton.png"), 140, 70, Constants.GAME_WIDTH /2, Constants.GAME_HEIGHT/2);
+        menuButton = new Button(new Texture("start.jpg"), 140, 70, Constants.GAME_WIDTH /2, Constants.GAME_HEIGHT/2);
         enableMenuButton = false; //at first, does not let change to main Menu (until enter name)
     }
 

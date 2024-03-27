@@ -1,14 +1,14 @@
 package com.bullethell.game.characters.enemy.pattern;
 
-import com.bullethell.game.world.Map;
-import com.bullethell.game.characters.BulletHellCharacters;
+import com.bullethell.game.characters.enemy.EnemyCharacter;
 import com.bullethell.game.characters.entity.Entity;
+import com.bullethell.game.world.Map;
 
 import java.util.List;
 
 public interface EnemyPattern {
 
-    BulletHellCharacters characters = new BulletHellCharacters();
+    EnemyCharacter characters = new EnemyCharacter();
 
     void addEnemy(List<Entity> entities, Map map);
 

@@ -7,9 +7,10 @@ import java.util.List;
 
 public class MidBossbPattern implements EnemyPattern {
 
+
     @Override
     public void addEnemy(List<Entity> entities, Map map) {
-        entities.add(characters.createMidEnemyTwo(200, 800, map));
+        entities.add(characters.createMidBossB(200, 800, map));
     }
 
 }

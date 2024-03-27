@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.TimeUtils;
 public class GameStates {
 
     private static GameStates _instance;
-    private BeginGameMap playState;
+    private Map playState;
     private Menu beginState;
     private EndGame endState;
     private int stateNum; //1 = beginState, 2= playState, 3 = endState
@@ -20,7 +20,7 @@ public class GameStates {
     {
         beginState = new Menu();
         stateNum = 1;
-        setMusic("opening.mp3", true, 0.5f);
+        setMusic("menuMusic.mp3", true, 0.5f);
         music.play();
         playStateEnd = 0;
     }
@@ -49,11 +49,11 @@ public class GameStates {
             case 1: //the game is at state 1
 
                 if (beginStateIsTriggered()) { // if state 1 is triggered to move to next state
-                    playState = new StageOneMap();
+                    playState = new BeginGameMap();
                     beginState.dispose();
                     stateNum += 1;
                     playStateEnd = 0;
-                    changeMusic("playSound.mp3", true, 0.5f);
+                    changeMusic("playMusic.mp3", true, 0.5f);
                 }
                 break;
             case 2:
@@ -67,7 +67,7 @@ public class GameStates {
                     endState = new EndGame();
                     playState.dispose();
                     stateNum += 1;
-                    changeMusic("opening.mp3", true, 0.1f);
+                    changeMusic("menuMusic.mp3", true, 0.1f);
                 }
                 break;
             case 3:

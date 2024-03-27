@@ -12,8 +12,8 @@ public class Menu {
 
     public Menu()
     {
-        bg = new Texture("test_back.jpg");
-        playButton = new Button(new Texture("emptyButton.png"), 140, 70, Constants.GAME_WIDTH /2, Constants.GAME_HEIGHT/2);
+        bg = new Texture("menu.jpg");
+        playButton = new Button(new Texture("start.jpg"), 140, 70, Constants.GAME_WIDTH /2, Constants.GAME_HEIGHT/2);
     }
 
     public void render(SpriteBatch batch) {
