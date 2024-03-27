@@ -15,7 +15,7 @@ public class EnemyTwo extends Entity {
     private boolean clock = false;
     private long clock_num = 1;
 
-    public EnemyTwo(float x, float y, Map map)
+    public EnemyTwo(float x , float y, Map map)
     {
         super(x, y, EntityType.ENEMY_2, map);
         entityInitialization();
