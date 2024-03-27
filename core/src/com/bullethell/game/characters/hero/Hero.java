@@ -2,387 +2,211 @@ package com.bullethell.game.characters.hero;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
-import com.bullethell.game.Map;
 import com.bullethell.game.bullet.Bullet;
+import com.bullethell.game.world.Map;
 import com.bullethell.game.characters.entity.Entity;
 import com.bullethell.game.characters.entity.EntityType;
 import com.bullethell.game.utils.Constants;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Hero {
-//    private Vector2 position;
-//    private Vector2 size;
-//    private Texture texture;
-//    private int currentSpeed;
-//    private Rectangle boxHit;
-//    private int acceleration;
-//    private static int normalSpeed = Constants.HERO_NORMAL_SPEED;
-//    private static int slowSpeed = Constants.HERO_SLOW_SPEED;
-//
-//    public static int leftKey = Input.Keys.LEFT;
-//    public static int rightKey = Input.Keys.RIGHT;
-//    public static int upKey = Input.Keys.UP;
-//    public static int downKey = Input.Keys.DOWN;
-//    public static int slowSpeedKey = Input.Keys.SHIFT_LEFT;
-//
-//    public Hero(float x, float y, Map map) {
-//        super(x, y, EntityType.HERO, map);
-//        position = new Vector2(Constants.GAME_WIDTH / 2, 100);
-//        size = new Vector2(60,60);
-//        texture = new Texture("playerShip1_red.png");
-//        currentSpeed = Constants.HERO_CURRENT_SPEED;
-//        boxHit = new Rectangle(position.x + size.x/2, position.y+size.y/2, size.x/60, size.y/60);
-//        //hero inputKeyManager todo
-//        acceleration = 100;
-//
-//        this.setImage(type.getImage());
-//        this.setHitBoxSize(type.getHeight()-40, type.getWidth()-40);
-//        this.setLives(type.getLive());
-//        this.getHitbox().setPosition(this.getPosX(), this.getPosY());
-//    }
-//
-//    public Vector2 getPosition() {
-//        return position;
-//    }
-//    public void setPosition(float x, float y) {
-//        position.x = x;
-//        position.y = y;
-//        boxHit.setPosition(position.x + size.x/2, position.y + size.y/2);
-//    }
-//
-//    public Vector2 getSize() {
-//        return size;
-//    }
-//
-//    public void setSize(Vector2 size) {
-//        this.size = size;
-//    }
-//
-//    public Texture getTexture() {
-//        return texture;
-//    }
-//
-//    public void setTexture(Texture texture) {
-//        this.texture = texture;
-//    }
-//
-//    public int getCurrentSpeed() {
-//        return currentSpeed;
-//    }
-//
-//    public void setCurrentSpeed(int currentSpeed) {
-//        this.currentSpeed = currentSpeed;
-//    }
-//
-//    public Rectangle getBoxHit() {
-//        return boxHit;
-//    }
-//
-//    public void setBoxHit(Rectangle boxHit) {
-//        this.boxHit = boxHit;
-//    }
-//
-//    public int getAcceleration() {
-//        return acceleration;
-//    }
-//
-//    public void setAcceleration(int acceleration) {
-//        this.acceleration = acceleration;
-//    }
-//
-//    public static int getNormalSpeed() {
-//        return normalSpeed;
-//    }
-//
-//    public static void setNormalSpeed(int normalSpeed) {
-//        Hero.normalSpeed = normalSpeed;
-//    }
-//
-//    public static int getSlowSpeed() {
-//        return slowSpeed;
-//    }
-//
-//    public static void setSlowSpeed(int slowSpeed) {
-//        Hero.slowSpeed = slowSpeed;
-//    }
-//
-//    private void controlBorder() {
-//        if(position.x < 0)
-//            setPosition(0, position.y);
-//        if(position.x > Constants.GAME_WIDTH - size.x)
-//            setPosition(Constants.GAME_WIDTH - size.x, position.y);
-//        if(position.y < 0)
-//            setPosition(position.x, 0);
-//        if(position.y > Constants.GAME_HEIGHT - size.y)
-//            setPosition(position.x, Constants.GAME_HEIGHT - size.y);
-//    }
-//
-//    @Override
-//    public void render(SpriteBatch spriteBatch) {
-//        spriteBatch.draw(texture, position.x, position.y, size.x, size.y);
-//    }
-//
-//    private void handleInputs(float deltaTime) {
-//
-//        if(Gdx.input.isKeyPressed(leftKey))
-//            setPosition(getPosition().x - getCurrentSpeed() * deltaTime, getPosition().y);
-//
-//        if(Gdx.input.isKeyPressed(rightKey))
-//            setPosition(getPosition().x + getCurrentSpeed() * deltaTime, getPosition().y);
-//
-//        if(Gdx.input.isKeyPressed(upKey))
-//            setPosition(getPosition().x, getPosition().y + getCurrentSpeed() * deltaTime);
-//
-//        if(Gdx.input.isKeyPressed(downKey))
-//            setPosition(getPosition().x, getPosition().y - getCurrentSpeed() * deltaTime);
-//
-//        if(Gdx.input.isKeyPressed(slowSpeedKey))
-//            setCurrentSpeed(Constants.HERO_SLOW_SPEED);
-//        else
-//            setCurrentSpeed(Constants.HERO_NORMAL_SPEED);
-//    }
-//    @Override
-//    public void update(float deltaTime) {
-//        handleInputs(deltaTime);
-//        controlBorder();
-//    }
-
-    private static Hero _instance;
-    private Vector2 pos;
-    private Vector2 size;
-    private Texture texture;
-    private Texture bomb;
-    private boolean pressBomb;
-    private int currentSpeed;
-    private Rectangle hitbox;
-    private InputKeyManager inputKeyManager;
-    private int acceleration;
-    private boolean invincible;
-    private int lives;
-    private int curHealth;
-    private int totalHeath;
-    private long invincibleDuration;
-    private long bornTime;
-    private long count;
-    private Texture hitboxT; //del
-    private BulletManager bulletsManager;
-    private static int normalSpeed = Constants.HERO_NORMAL_SPEED;
-    private static int slowSpeed = Constants.HERO_SLOW_SPEED;
-    public static boolean cheat = false;
+public class Hero extends Entity {
+    private BitmapFont font;
+    private static long lastFireTime = 0;
+    private InputManager inputManager;
+    private boolean flag = true;
+    private Sound shootSound;
+    private Sound collisionSound;
+    private SpriteBatch batch;
 
 
-    private Hero() {
-        pos = new Vector2(Constants.GAME_WIDTH / 2, 100);
-        texture = new Texture("Hero.png");
-        bomb = new Texture("bomb.png");
-        pressBomb=false;
-        size = new Vector2(60, 60);
-        hitbox = new Rectangle(pos.x+size.x/2, pos.y+size.y/2, size.x/60, size.y/60);
-        inputKeyManager = InputKeyManager.getInstance(this);
-        acceleration = 100;
-        invincible = false;
-        lives = 3;
-        invincibleDuration = 5000;
-        totalHeath = 25;
-        curHealth = totalHeath;
-        bornTime = 0;
-        count = 0;
-        hitboxT = new Texture("bulletSource.png");
-        bulletsManager = new BulletManager();
+    public Hero(float x, float y, Map map) {
+        super(x, y, EntityType.HERO, map);
+        entityInitialization();
+        batch = new SpriteBatch();
+        shootSound = Gdx.audio.newSound(Gdx.files.internal("playerShoot.mp3"));
+        collisionSound = Gdx.audio.newSound(Gdx.files.internal("explode.mp3"));
     }
 
-    public static Hero getInstance() {
-        if (_instance == null) {
-            _instance = new Hero();
+    @Override
+    protected void entityInitialization() {
+        hitbox.setPosition(this.getPosX()-15, this.getPosY());
+        hitbox.setSize(10, 10);
+        inputManager = new InputManager(this);
+        bullets = new ArrayList<>();
+        bulletsToRemove = new ArrayList<>();
+        font = new BitmapFont();
+        score = 0;
+    }
+
+    public void moveSetting() {
+        inputManager.setLeftKey(Input.Keys.LEFT);
+        inputManager.setRightKey(Input.Keys.RIGHT);
+        inputManager.setUpKey(Input.Keys.UP);
+        inputManager.setDownKey(Input.Keys.DOWN);
+        inputManager.setAddSpeedKey(Input.Keys.SHIFT_LEFT);
+        inputManager.setSpeed(300);
+        inputManager.setAc_speed(150);
+        inputManager.setShootKey(Input.Keys.SPACE);
+    }
+
+    protected void moveControl(float deltaTime) {
+        moveSetting();
+
+        inputManager.move(deltaTime);
+    }
+
+
+    private void borderControl() {
+        if(getPosX() < 0)
+            sprite.setX(0);
+        if(getPosX() > 480-48)
+            sprite.setX(480-48);
+        if(getPosY() < 0)
+            sprite.setY(0);
+        if(getPosY() > 800-48)
+            sprite.setY(800-48);
+    }
+
+    private boolean isCorrectTimeInterval() {
+        return TimeUtils.nanoTime() - lastFireTime > 100000000;
+    }
+
+    private void updateBullet(float deltaTime) {
+
+        if(Gdx.input.isKeyPressed(inputManager.getShootKey())&&!die) {
+            if(isCorrectTimeInterval()) {
+                shootSound.play();
+                bullets.add(getBulletManager().createHeroBullet(getPosX()+11, getPosY()+20));
+                lastFireTime = TimeUtils.nanoTime();
+            }
         }
-        return _instance;
+
+        for(Bullet bullet: bullets) {
+            bullet.update(deltaTime);
+            if(bullet.remove) {
+                bulletsToRemove.add(bullet);
+            }
+        }
+        checkCollision();
+
+        bullets.removeAll(bulletsToRemove);
     }
 
-    public void reInitialize()
+    private void checkCollision() {
+        for (Bullet bullet: bullets) {
+            for (Entity enemy: map.getEntities()) {
+                if (bullet.collideWith(enemy)) {
+                    bulletsToRemove.add(bullet);
+                    updateScore(enemy.getType());
+                    enemy.getCollision();
+                }
+            }
+        }
+    }
+
+    private void updateScore(EntityType enemyType)
     {
-        pos = new Vector2(Constants.GAME_WIDTH / 2, 100);
-        currentSpeed = Constants.HERO_NORMAL_SPEED;
-        hitbox = new Rectangle(pos.x+size.x/2, pos.y+size.y/2, size.x/60, size.y/60);
-        invincible = false;
-        lives = 3;
-        bornTime = 0;
-        curHealth = totalHeath;
+        switch (enemyType)
+        {
+            case MID_BOSS_B:
+                score += 40;
+                break;
+            case GEN_ENEMY_A:
+                score += 5;
+                break;
+            case GEN_ENEMY_B:
+                score += 7;
+                break;
+            case MID_BOSS_A:
+                score += 10;
+                break;
+        }
     }
 
-    public void setPressBomb(boolean pressBomb)
-    {
-        this.pressBomb=pressBomb;
+    public void getCollision() {
+        System.out.println("Start deal with hero's collision");
+        if(!map.getInvincible())
+        {
+            //collision effect
+            collisionSound.play();
+            this.lives--;
+            if(lives != 0){
+                this.pos.x = 200;
+                this.pos.y = 100;
+                this.sprite.setPosition(200,100);
+            }
+            map.setInvincible(true);
+            map.setLastHitTime(TimeUtils.nanoTime());
+            map.setNoBullet(true);
+            if(lives<=0) {
+                System.out.println("Die");
+                die = true;
+            }
+        }
     }
 
-    public boolean getPressBomb()
-    {
-        return this.pressBomb;
-    }
-    public Vector2 getPos() {
-        return pos;
-    }
+    @Override
+    public void update(float deltaTime) {
 
-    public Vector2 getSize() {
-        return size;
-    }
-
-    public void render(SpriteBatch batch) {
-        if (invincible)
-            renderHeroBlinking(batch);
-        else
-            batch.draw(texture, pos.x, pos.y, size.x, size.y);
-
-        bulletsManager.render(batch);
-
-        if (currentSpeed <= slowSpeed)
-            batch.draw(hitboxT,hitbox.x, hitbox.y, hitbox.width, hitbox.height);
-
-        count++;
-    }
-
-    private void renderHeroBlinking(SpriteBatch batch)
-    {
-        if (count % 2 == 0) //give blinking effect
-            batch.draw(texture, pos.x, pos.y, size.x, size.y);
-    }
-
-    public void renderBomb(SpriteBatch batch)
-    {
-        batch.draw(bomb,0,200,500,600);
-    }
-
-    public void update(float delta) {
-        inputKeyManager.executeInputCommand(delta);
-
-        updateInvincible();
+        moveControl(deltaTime);
 
         borderControl();
 
-        bulletsManager.updateBullets(delta);
+        hitbox.setPosition(getPosX() + 20, getPosY() + 24);
+
+        updateBullet(deltaTime);
+        checkEntityCollision();
+
+        if(die)
+        {
+            map.setInvincible(true);
+            if(flag){
+                try {
+                    Thread.sleep(800);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                flag = false;
+            }
+            this.pos.x = 200;
+            this.pos.y = -100;
+            this.sprite.setPosition(200,-100);
+        }
+        if(map.getInvincible())
+            this.show = !this.show;
+        if(!map.getInvincible())
+            this.show = true;
+
     }
 
-    private void updateInvincible()
-    {
-        if (TimeUtils.millis() - bornTime > invincibleDuration)
-            invincible = false;
-        else
-            invincible = true;
+    @Override
+    public void render(SpriteBatch batch) {
+        if(this.show && !this.die)
+            sprite.draw(batch);
+        for(Bullet bullet: bullets) {
+            bullet.render(batch);
+        }
+        if (this.die)
+        {
+            Texture texture = new Texture("Herodie.png");
+            batch.draw(texture, this.getPosX(), this.getPosY());
+        }
     }
 
-    public void addBullet() {
-        Vector2 posx = new Vector2();
-        posx.y=pos.y;
-        posx.x=pos.x-10;
-        bulletsManager.addBullet(posx, size);
+    private void checkEntityCollision() {
+        for (Entity enemy : map.getEntities()) {
+            if (enemy.collideWith(this)) {
+                getCollision();
+            }
+        }
     }
 
-    public int getCurrentSpeed() {
-        return currentSpeed;
-    }
-
-    public void setCurrentSpeed(int currentSpeed) {
-        this.currentSpeed = currentSpeed;
-    }
-
-
-
-    public void setPosition(float x, float y) {
-        pos.x = x;
-        pos.y = y;
-        hitbox.setPosition(pos.x+size.x/2, pos.y+size.y/2);
-    }
-
-    public Rectangle getHitbox() {
-        return hitbox;
-    }
-
-    public List<Bullet> getBullets() {
-        return bulletsManager.getBullets();
-    }
-
-    public int getAcceleration() {
-        return acceleration;
-    }
-
-    private void borderControl() {
-        if (pos.x < 0)
-            setPosition(0, pos.y);
-        if (pos.x > Constants.GAME_WIDTH - size.x)
-            setPosition(Constants.GAME_WIDTH - size.x, pos.y);
-        if (pos.y < 0)
-            setPosition(pos.x, 0);
-        if (pos.y > (Constants.GAME_HEIGHT - size.y))
-            setPosition(pos.x, Constants.GAME_HEIGHT - size.y);
-    }
-
-    public void die() {
-        this.lives--;
-        this.pos.x = Constants.GAME_WIDTH / 2;
-        this.pos.y = 100;
-        curHealth = totalHeath;
-        invincible = true;
-        bornTime = TimeUtils.millis();
-    }
-
-    public int getLives()
-    {
-        return lives;
-    }
-
-    public void takeDamage(int damage)
-    {
-        if (!invincible&&!cheat)
-            curHealth -= damage;
-    }
-
-    public boolean heathRunOut()
-    {
-        if (curHealth <= 0)
-            return true;
-        return false;
-    }
-
-    public int getCurHealth()
-    {
-        return curHealth;
-    }
-
-    public void setHitbox(Rectangle rec)
-    {
-        this.hitbox = rec;
-    }
-
-    public boolean getInvincible()
-    {
-        return invincible;
-    }
-
-    public void dispose()
-    {
-        texture.dispose();
-        hitboxT.dispose();
-        bulletsManager.dispose();
-    }
-
-    public int getTotalHeath()
-    {
-        return totalHeath;
-    }
-
-    public int getNormalSpeed()
-    {
-        return normalSpeed;
-    }
-
-    public int getSlowSpeed()
-    {
-        return slowSpeed;
-    }
 }

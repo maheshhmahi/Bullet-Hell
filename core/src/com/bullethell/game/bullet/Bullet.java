@@ -1,121 +1,85 @@
 package com.bullethell.game.bullet;
 
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.bullet.actions.ShootingAction;
-import com.bullethell.game.utils.Constants;
+import com.bullethell.game.characters.entity.Entity;
+
+import java.util.List;
 
 public abstract class Bullet {
-//    protected Rectangle bulletx;
-//    protected int speed;
-//    protected static int DEFAULT_Y = 40;
-//    protected Texture texture;
-//    public boolean remove = false;
-//    float x, y;
-//    float dx, dy;
-//    ShootingAction shootingAction;
-//
-//    public Bullet(float x, float y) {
-//        this.x = x;
-//        this.y = y;
-//    }
-//
-//    public void setTexture(String imgPath) {
-//        this.texture = new Texture(imgPath);
-//    }
-//
-//    public void setSpeed(int speed) {
-//        this.speed = speed;
-//    }
-//
-//    public int getSpeed() {
-//        return speed;
-//    }
-//
-//    public void setRemove(boolean remove) {
-//        this.remove = remove;
-//    }
-//
-//    public void update(float deltaTime) {
-//        this.shootingAction.shoot(deltaTime, speed);
-//    }
-//
-//    public void setShootingAction(ShootingAction shootingAction) {
-//        this.shootingAction = shootingAction;
-//    }
-//
-//    public void render(SpriteBatch batch) {
-//        this.shootingAction.render(batch, texture);
-//    }
-//
-//    public void setDx(float dx) {
-//        this.dx = dx;
-//    }
-//
-//    public void setDy(float dy) {
-//        this.dy = dy;
-//    }
-protected Texture texture;
-    protected Vector2 size;
-    protected Vector2 pos;
-    protected long initTime;
+
     protected Rectangle hitbox;
-    protected int damage;
+    protected Sprite sprite;
+    protected int speed;
+    public boolean remove = false;
+    float x, y;
+    float dx, dy;
+    List<ShootingAction> shootingActions;
 
-    public Bullet()
-    {
-        pos = new Vector2();
-        size = new Vector2();
-        initTime = TimeUtils.millis();
-        hitbox = new Rectangle();
-        damage = 5;
+    public Bullet(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
-    public void render(SpriteBatch batch)
-    {
-        batch.draw(texture, pos.x, pos.y, size.x, size.y);
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
-    public void setPos(float x, float y)
-    {
-        this.pos.x = x;
-        this.pos.y = y;
-        hitbox.setPosition(x,y);
+    public int getSpeed() {
+        return speed;
     }
 
-    public Vector2 getPos()
-    {
-        return pos;
+    public void setRemove(boolean remove) {
+        this.remove = remove;
     }
 
-    public void dispose()
-    {
-        texture.dispose();
+
+    public void update(float deltaTime) {
+
+        for (ShootingAction action: shootingActions) {
+            action.shoot(deltaTime, speed);
+        }
     }
 
-    public boolean outOfBorder(int pixels)
-    {
-        return (pos.x+size.x < -pixels || pos.y+size.y < -pixels ||
-                pos.x > Constants.GAME_WIDTH + pixels ||
-                pos.y > Constants.GAME_HEIGHT + pixels);
+    public void setShootingAction(List<ShootingAction> shootingActions) {
+        this.shootingActions = shootingActions;
     }
 
-    public long getInitTime()
-    {
-        return initTime;
+    public void render(SpriteBatch batch) {
+        for (ShootingAction action: shootingActions) {
+            action.render(batch);
+        }
     }
 
-    public Rectangle getHitbox()
-    {
+    public void setDx(float dx) {
+        this.dx = dx;
+    }
+
+    public void setDy(float dy) {
+        this.dy = dy;
+    }
+
+    public Rectangle getHitbox() {
         return hitbox;
     }
 
-    public int getDamage()
-    {
-        return damage;
+    public void setHitbox(Rectangle hitbox) {
+        this.hitbox = hitbox;
     }
-}
 
+    public Rectangle getArea() {
+        for (ShootingAction action: shootingActions) {
+            return action.getHitBox();
+        }
+        return null;
+    }
+
+    public boolean collideWith(Entity entity) {
+        Rectangle rect1 = getArea();
+        Rectangle rect2 = entity.getArea();
+        return rect1.overlaps(rect2);
+    }
+
+}
