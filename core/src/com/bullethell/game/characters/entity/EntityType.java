@@ -5,7 +5,7 @@ public enum EntityType {
     MID_BOSS_B(100, 100, "monster.png", 80, 15),
     MID_BOSS_A(100, 100, "monsterboss.png", 80, 20),
     HERO(50, 50, "playerShip1_red.png", 80, 10),
-    FINAL_BOSS_1(100,100 ,"finalBoss.png" ,80,1 ),
+    FINAL_BOSS(100,100 ,"finalBoss.png" ,65,30 ),
     GEN_ENEMY_B(20, 20, "enemy2.png", 40, 1),
     GEN_ENEMY_A(75, 50, "monster.png", 40, 15);
 
