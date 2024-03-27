@@ -26,17 +26,30 @@ public class FinalBoss extends Entity {
     @Override
     protected void setEntity() {
 
+        // Set initial state and direction
+        this.state = 1;
+        this.direction = 4;
+
         // Set hitbox position and size
         hitbox.setPosition(getPosX(), getPosY());
         setHitBoxSize(type.getHeight(), type.getWidth());
 
-        // Set initial state and direction
-        this.state = 1; // initial
-        this.direction = 4; // initial => going down
-
         // Initialize bullet lists
         bullets = new ArrayList<>();
         bulletsToRemove = new ArrayList<>();
+    }
+
+    // Get direction towards hero
+    private Vector2 getDirection() {
+        float hx, hy, cx, cy, dx, dy;
+        hx = map.getHero().getPosX()+13;
+        hy = map.getHero().getPosY()+10;
+        cx = hx - getPosX();
+        cy = hy - getPosY();
+        dx = (cx/(float)Math.sqrt(cx * cx + cy * cy));
+        dy = (cy/(float)Math.sqrt(cx * cx + cy * cy));
+        Vector2 ret = new Vector2(dx,dy);
+        return ret;
     }
 
     public void update(float deltaTime) {
@@ -78,9 +91,8 @@ public class FinalBoss extends Entity {
         for (Bullet bullet: bullets) {
             if (bullet.collideWith(map.getHero())) {
                 bulletsToRemove.add(bullet);
-                System.out.println("BossB hit hero");
+                System.out.println("Final Boss hit hero");
                 map.getHero().getCollision();
-                //getCollision();
             }
         }
     }
@@ -99,18 +111,6 @@ public class FinalBoss extends Entity {
 
         }
     }
-    // Get direction towards hero
-    private Vector2 getDirection() {
-        float hx, hy, cx, cy, dx, dy;
-        hx = map.getHero().getPosX()+13;
-        hy = map.getHero().getPosY()+10;
-        cx = hx - getPosX();
-        cy = hy - getPosY();
-        dx = (cx/(float)Math.sqrt(cx * cx + cy * cy));
-        dy = (cy/(float)Math.sqrt(cx * cx + cy * cy));
-        Vector2 ret = new Vector2(dx,dy);
-        return ret;
-    }
 
     private boolean isCorrectShootingInterval() {
         return TimeUtils.millis() - lastFireTime > 50;
@@ -123,11 +123,18 @@ public class FinalBoss extends Entity {
 
     // Firing pattern 1
     private void firing_pattern_1() {
-        this.lastFireTime = TimeUtils.millis();
-        float bulletSpeed = 5; // Adjust bullet speed as needed
+        if(!die&&isCorrectShootingInterval() && isInBorder() && lives>0)
+        {
+            lastFireTime = TimeUtils.millis();
+            Vector2 direction = getDirection();
+            Random r = new Random();
+            float dx = direction.x;
+            float dy = direction.y;
+            dx = (float)(Math.sqrt(0.01)*r.nextGaussian())+dx;
+            dy = (float)(Math.sqrt(0.01)*r.nextGaussian())+dy;
+            this.bullets.add(getBulletManager().createMidBossBBullet(getPosX()+40, getPosY(), dx, dy));
+        }
 
-        // Add bullets firing downwards
-        this.bullets.add(getBulletManager().createMidBossBBullet(getPosX() + 35, getPosY() - 40, 0, -bulletSpeed));
     }
 
     // Firing pattern 2
