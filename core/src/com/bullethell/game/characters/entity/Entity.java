@@ -135,7 +135,7 @@ public abstract class Entity {
 
     public abstract void getCollision();
 
-    protected abstract void setEntity();
+    protected abstract void entityInitialization();
 
     public boolean isDie() {
         return die;

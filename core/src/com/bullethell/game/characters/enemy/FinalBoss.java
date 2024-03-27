@@ -1,7 +1,6 @@
 package com.bullethell.game.characters.enemy;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.bullet.Bullet;
@@ -20,11 +19,11 @@ public class FinalBoss extends Entity {
 
     public FinalBoss(float x, float y, Map map) {
         super(x, y, EntityType.FINAL_BOSS, map);
-        setEntity();
+        entityInitialization();
     }
     // Initialize entity properties
     @Override
-    protected void setEntity() {
+    protected void entityInitialization() {
 
         // Set initial state and direction
         this.state = 1;

@@ -26,14 +26,14 @@ public class Hero extends Entity {
 
     public Hero(float x, float y, Map map) {
         super(x, y, EntityType.HERO, map);
-        setEntity();
+        entityInitialization();
         batch = new SpriteBatch();
         shootSound = Gdx.audio.newSound(Gdx.files.internal("playerShoot.mp3"));
         collisionSound = Gdx.audio.newSound(Gdx.files.internal("explode.mp3"));
     }
 
     @Override
-    protected void setEntity() {
+    protected void entityInitialization() {
         hitbox.setPosition(this.getPosX()-15, this.getPosY());
         hitbox.setSize(10, 10);
         inputManager = new InputManager(this);

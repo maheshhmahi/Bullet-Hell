@@ -17,11 +17,11 @@ public class MidEnemyTwo extends Entity {
 
     public MidEnemyTwo(float x, float y, Map map) {
         super(x, y, EntityType.MID_BOSS_B, map);
-        setEntity();
+        entityInitialization();
     }
 
     @Override
-    protected void setEntity() {
+    protected void entityInitialization() {
 
         this.direction=4;
 
