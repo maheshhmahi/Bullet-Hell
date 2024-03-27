@@ -78,9 +78,9 @@ public class BeginGameMap extends Map {
 //        timePeriod(45000, 45020, new MidBossAPattern());
 //        timePeriod(1000, 1020, new GeneralEnemyaPattern()); // Adjusted timing for the second MidBossbPattern
 //        timePeriod(2000, 2020, new GeneralEnemyaPattern()); // Adjusted timing for the second MidBossbPattern
-        timePeriod(1000, 1020, new FinalBossPattern()); // Adjusted timing for the second MidBossbPattern
+        timePeriod(1000, 1020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
 //        timePeriod(10000, 10020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
-//        timePeriod(68000, 68020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
+        timePeriod(68000, 68020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
 
         super.update(delta);
 
