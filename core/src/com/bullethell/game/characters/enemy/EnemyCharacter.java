@@ -1,6 +1,7 @@
 package com.bullethell.game.characters.enemy;
 
 import com.bullethell.game.characters.enemy.factory.EnemyFactory;
+import com.bullethell.game.characters.enemy.factory.FinalBossFactory;
 import com.bullethell.game.characters.enemy.factory.MidBossbFactory;
 import com.bullethell.game.characters.enemy.factory.EnemyOneFactory;
 import com.bullethell.game.characters.enemy.factory.EnemyTwoFactory;
@@ -41,5 +42,11 @@ public class EnemyCharacter {
         factory = new MidBossbFactory(posX, posY, map);
         return factory.createEnemy();
     }
+
+    public Entity createFinalBoss(int posX, int posY, Map map) {
+        factory = new FinalBossFactory(posX, posY, map);
+        return factory.createEnemy();
+    }
+
 
 }

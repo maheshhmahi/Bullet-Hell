@@ -6,8 +6,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.characters.enemy.pattern.EnemyPattern;
-import com.bullethell.game.characters.enemy.pattern.EnemyOnePattern;
-import com.bullethell.game.characters.enemy.pattern.EnemyTwoPattern;
 import com.bullethell.game.characters.enemy.pattern.MidBossbPattern;
 import com.bullethell.game.characters.hero.Hero;
 import com.bullethell.game.utils.Constants;
@@ -81,7 +79,7 @@ public class BeginGameMap extends Map {
         timePeriod(2000, 2020, new EnemyTwoPattern()); // Adjusted timing for the second MidBossbPattern
         timePeriod(3000, 3020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
 //        timePeriod(10000, 10020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
-//        timePeriod(50000, 50020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
+        timePeriod(1800, 2000, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
 
         super.update(delta);
 
