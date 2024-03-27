@@ -119,10 +119,10 @@ public class Hero extends Entity {
             case MID_BOSS_B:
                 score += 40;
                 break;
-            case GEN_ENEMY_A:
+            case ENEMY_1:
                 score += 5;
                 break;
-            case GEN_ENEMY_B:
+            case ENEMY_2:
                 score += 7;
                 break;
             case MID_BOSS_A:

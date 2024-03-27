@@ -3,6 +3,8 @@ package com.bullethell.game.bullet;
 import com.bullethell.game.bullet.factory.BulletFactory;
 import com.bullethell.game.bullet.factory.HeroBulletFactory;
 import com.bullethell.game.bullet.factory.MidbossbBulletFactory;
+import com.bullethell.game.bullet.factory.EnemyOneBulletFactory;
+import com.bullethell.game.bullet.factory.EnemyTwoBulletFactory;
 
 public class BulletManager {
 
@@ -42,11 +44,15 @@ public class BulletManager {
         return factory.createBullet();
     }
 
-//    public Bullet createEnemyABullet(float x, float y, float dx, float dy) {
-//        factory = new EnemyABulletFactory(x, y, dx, dy);
-//        return factory.createBullet();
-//    }
+    public Bullet createEnemyOneBullet(float x, float y, float dx, float dy) {
+        factory = new EnemyOneBulletFactory(x, y, dx, dy);
+        return factory.createBullet();
+    }
 
+    public Bullet createEnemyTwoBullet(float x, float y) {
+        factory = new EnemyTwoBulletFactory(x, y);
+        return factory.createBullet();
+    }
 //    public FinalBossBullet1 createFinalBossBullet(float x, float y, float dx, float dy) {
 //        return new FinalBossBullet1(x, y, dx, dy, BulletType.FINAL_BOSS_1.getSpeed(), BulletType.MID_BOSS_B.getImage(), new ShootAround(x, y, dx, dy));
 //    }
