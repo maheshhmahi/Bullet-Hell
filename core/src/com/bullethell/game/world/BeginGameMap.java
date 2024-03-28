@@ -93,8 +93,14 @@ public class BeginGameMap extends Map {
 
     private void updateWinning()
     {
-         isWin = this.entities.size() > 0 &&
-                this.entities.get(this.entities.size() - 1).isDie();
+        int final_boss_defeated = 0;
+        for (Object obj : this.entities) {
+            String className = obj.getClass().getSimpleName();
+            if(className.equals("FinalBoss")){
+                final_boss_defeated = 1;
+            }
+        }
+        isWin = this.entities.size() > 0 && this.entities.get(this.entities.size() - 1).isDie() && final_boss_defeated == 1;
         if (isWin)
             winTime = TimeUtils.nanoTime();
     }
