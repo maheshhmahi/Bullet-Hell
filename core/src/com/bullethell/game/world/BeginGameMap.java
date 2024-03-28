@@ -47,8 +47,8 @@ public class BeginGameMap extends Map {
     public void render(OrthographicCamera camera, SpriteBatch batch) {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
-        batch.draw(background1, 0, bgYOffset1, (int) (Constants.GAME_WIDTH), (int) (Constants.GAME_HEIGHT));
-        batch.draw(background2, 0, bgYOffset2, (int) (Constants.GAME_WIDTH), (int) (Constants.GAME_HEIGHT));
+        batch.draw(background1, 0, bgYOffset1, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        batch.draw(background2, 0, bgYOffset2, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
         super.render(camera, batch);
 
         font.getData().setScale(1.1f);
@@ -71,14 +71,10 @@ public class BeginGameMap extends Map {
     @Override
     public void update(float delta) {
 
-//        timePeriod(1000, 1020, new GeneralEnemyaPattern());
-//        timePeriod(22000, 22020, new GeneralEnemybPattern());
-//        timePeriod(45000, 45020, new MidBossAPattern());
-        timePeriod(1000, 1020, new EnemyOnePattern()); // Adjusted timing for the second MidBossbPattern
-        timePeriod(2000, 2020, new EnemyTwoPattern()); // Adjusted timing for the second MidBossbPattern
-        timePeriod(3000, 3020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
-//        timePeriod(10000, 10020, new MidBossbPattern()); // Adjusted timing for the second MidBossbPattern
-        timePeriod(45000, 45020, new FinalBossPattern()); // Adjusted timing for the FinalBossPattern
+        timePeriod(1000, 1020, new EnemyOnePattern());
+        timePeriod(4000, 4020, new EnemyTwoPattern());
+        timePeriod(25000, 25020, new MidBossbPattern());
+        timePeriod(50000, 50020, new FinalBossPattern());
 
         super.update(delta);
 
@@ -97,7 +93,7 @@ public class BeginGameMap extends Map {
 
     private void updateWinning()
     {
-        isWin = this.entities.size() > 0 &&
+         isWin = this.entities.size() > 0 &&
                 this.entities.get(this.entities.size() - 1).isDie();
         if (isWin)
             winTime = TimeUtils.nanoTime();

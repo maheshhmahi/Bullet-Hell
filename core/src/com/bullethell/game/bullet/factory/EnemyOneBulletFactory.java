@@ -6,6 +6,8 @@ import com.bullethell.game.bullet.Bullet;
 import com.bullethell.game.bullet.BulletType;
 import com.bullethell.game.bullet.EnemyOneBullet;
 import com.bullethell.game.bullet.actions.ShootAround;
+import com.bullethell.game.bullet.actions.ShootStraightDown;
+import com.bullethell.game.bullet.actions.ShootStraightLeft;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,7 @@ public class EnemyOneBulletFactory extends BulletFactory{
 
     @Override
     protected void addShootingAction() {
-        shootingActions.add(new ShootAround(getX(), getY(), getDx(), getDy(), getSprite()));
+        shootingActions.add(new ShootStraightDown(getX(), getY(), getSprite()));
     }
 
     @Override
