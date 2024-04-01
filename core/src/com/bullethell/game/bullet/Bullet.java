@@ -76,6 +76,8 @@ public abstract class Bullet {
         return null;
     }
 
+
+    //reorganized
     public boolean collideWith(Entity entity) {
         Rectangle rect1 = getArea();
         Rectangle rect2 = entity.getArea();
