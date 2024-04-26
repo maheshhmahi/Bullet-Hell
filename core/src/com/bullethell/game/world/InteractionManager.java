@@ -2,6 +2,9 @@ package com.bullethell.game.world;
 
 
 import com.badlogic.gdx.utils.TimeUtils;
+import com.bullethell.game.AIEngine.EnemyBSourceBulletManager;
+import com.bullethell.game.AIEngine.EnemyWave;
+import com.bullethell.game.AIEngine.RunAIEngine;
 import com.bullethell.game.bullet.Bullet;
 import com.bullethell.game.entities.Enemy.Enemy;
 import com.bullethell.game.entities.players.hero.Hero;
@@ -25,7 +28,7 @@ public class InteractionManager {
         List<EnemyWave> waves = AIenemy.getEnemyWave();
         for (int i = 0; i < waves.size(); i++)
         {
-            List<Enemy_BSource_Bullet_Manager> layer = waves.get(i).getManagerList();
+            List<EnemyBSourceBulletManager> layer = waves.get(i).getManagerList();
 
             for (int j = 0; j < layer.size(); j++) {
 
@@ -54,7 +57,7 @@ public class InteractionManager {
     }
 
     private void enemyTakeDamage(Enemy enemy, int damage,
-                                 List<Enemy_BSource_Bullet_Manager> layer, int index)
+                                 List<EnemyBSourceBulletManager> layer, int index)
     {
         enemy.takeDamage(damage);
         if (enemy.healthRunOut())
@@ -67,7 +70,7 @@ public class InteractionManager {
         List<EnemyWave> waves = AIenemy.getEnemyWave();
         for (int i = 0; i < waves.size(); i++)
         {
-            List<Enemy_BSource_Bullet_Manager> layer = waves.get(i).getManagerList();
+            List<EnemyBSourceBulletManager> layer = waves.get(i).getManagerList();
 
             for (int j = 0; j < layer.size(); j++) {
                 Enemy enemy = layer.get(j).getEnemy();
@@ -106,7 +109,7 @@ public class InteractionManager {
         List<EnemyWave> waves = AIenemy.getEnemyWave();
         for (int i = 0; i < waves.size(); i++)
         {
-            List<Enemy_BSource_Bullet_Manager> layer = waves.get(i).getManagerList();
+            List<EnemyBSourceBulletManager> layer = waves.get(i).getManagerList();
             String enemyType = waves.get(i).getEnemyType();
 
             for (int j = 0; j < layer.size(); j++) {
@@ -129,7 +132,7 @@ public class InteractionManager {
         List<EnemyWave> waves = AIenemy.getEnemyWave();
         for (int i = 0; i < waves.size(); i++)
         {
-            List<Enemy_BSource_Bullet_Manager> layer = waves.get(i).getManagerList();
+            List<EnemyBSourceBulletManager> layer = waves.get(i).getManagerList();
             String enemyType = waves.get(i).getEnemyType();
 
             for (int j = 0; j < layer.size(); j++) {
