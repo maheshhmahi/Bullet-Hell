@@ -1,7 +1,8 @@
-package com.mygdx.game.Algorithms.EnemyMovePattern;
+package com.bullethell.game.Algorithms.EnemyMovePattern;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mygdx.game.entities.Enemy.Enemy;
+import com.bullethell.game.Algorithms.EnemyMovePattern.EnemyMovePattern;
+import com.bullethell.game.entities.Enemy.Enemy;
 
 //steadily move toward the target
 public class FollowTarget extends EnemyMovePattern {

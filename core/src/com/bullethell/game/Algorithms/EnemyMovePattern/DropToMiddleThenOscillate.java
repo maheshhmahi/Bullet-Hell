@@ -1,16 +1,16 @@
 package com.bullethell.game.Algorithms.EnemyMovePattern;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import com.mygdx.game.entities.Enemy.Direction;
-import com.mygdx.game.entities.Enemy.Enemy;
-import com.mygdx.game.MyGdxGame;
+import com.bullethell.game.entities.Enemy.Direction;
+import com.bullethell.game.entities.Enemy.Enemy;
+import com.bullethell.game.utils.Constants;
 
 //go steadily straight from top to 3/4 of window height then oscillate left and right
 public class DropToMiddleThenOscillate extends EnemyMovePattern {
     private float newX, newY;
     private float curX, curY;
     private Enemy entity;
-    private float dropHeight = MyGdxGame.HEIGHT / 4 * 3;
+    private float dropHeight = Constants.GAME_HEIGHT / 4 * 3;
     private float oscillateDistance = 30;
 
     public DropToMiddleThenOscillate(int attackingDuration)
