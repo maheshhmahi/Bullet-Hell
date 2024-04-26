@@ -10,6 +10,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.bullethell.game.utilities.PopUp;
+import com.bullethell.game.utilities.SettingPopUp;
+import com.bullethell.game.utilities.Storage;
+import com.bullethell.game.utilities.TextPopUp;
+import com.bullethell.game.utils.Constants;
 
 public class Menu {
     private Texture bg;
@@ -176,10 +181,10 @@ public class Menu {
 
     public void render(SpriteBatch batch) {
         batch.begin();
-        batch.draw(bg, 0, 0, MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-        batch.draw(title, 20, MyGdxGame.HEIGHT-220, MyGdxGame.WIDTH - 20, 140);
-        font.draw(batch, "Top 3 scores", MyGdxGame.WIDTH-300, MyGdxGame.HEIGHT-230);
-        font.draw(batch, storage.getTopEntry(3), MyGdxGame.WIDTH-330, MyGdxGame.HEIGHT-260);
+        batch.draw(bg, 0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        batch.draw(title, 20, Constants.GAME_HEIGHT-220, Constants.GAME_WIDTH - 20, 140);
+        font.draw(batch, "Top 3 scores", Constants.GAME_WIDTH-300, Constants.GAME_HEIGHT-230);
+        font.draw(batch, storage.getTopEntry(3), Constants.GAME_WIDTH-330, Constants.GAME_HEIGHT-260);
         batch.end();
         stage.act();
         stage.draw();

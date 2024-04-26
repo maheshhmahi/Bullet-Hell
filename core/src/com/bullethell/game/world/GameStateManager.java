@@ -5,6 +5,9 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.bullethell.game.world.states.EndGame;
+import com.bullethell.game.world.states.Menu;
+import com.bullethell.game.world.states.StageOneMap;
 
 //manage Menu (begin state), GameMap (play state), EndGame (end state)
 public class GameStateManager {

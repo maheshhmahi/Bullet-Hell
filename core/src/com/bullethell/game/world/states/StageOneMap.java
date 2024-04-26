@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.bullethell.game.entities.players.hero.Hero;
+import com.bullethell.game.utils.Constants;
+import com.bullethell.game.world.InteractionManager;
 
 public class StageOneMap {
 
@@ -41,7 +44,7 @@ public class StageOneMap {
         background1 = new Texture("galaxy.jpg");
         background2 = new Texture("galaxy.jpg");
         bgYOffset1 = 0;
-        bgYOffset2 = MyGdxGame.HEIGHT;
+        bgYOffset2 = Constants.GAME_HEIGHT;
         font = new BitmapFont();
         iManager = new InteractionManager(AIEnemy);
         isWin = isLose = false;
@@ -74,15 +77,6 @@ public class StageOneMap {
 			bombSound.play();
 			bombNum-=1;
 			iManager.BombHitEnemy();
-			/*
-			for(int i = 0;i<AIEnemy.getEnemyWave().size();i++)
-			{
-				EnemyWave wave = AIEnemy.getEnemyWave().get(i);
-				for(int j=0;j<wave.getManagerList().size();j++)
-				{
-					wave.getManagerList().get(j).getEnemy().takeDamage(150);
-				}
-			}*/
         }
 		else
 		{
@@ -99,17 +93,17 @@ public class StageOneMap {
 
     private void drawBackGround(SpriteBatch batch)
     {
-        batch.draw(background1, 0, bgYOffset1, (int) (MyGdxGame.WIDTH), (int) (MyGdxGame.HEIGHT));
-        batch.draw(background2, 0, bgYOffset2, (int) (MyGdxGame.WIDTH), (int) (MyGdxGame.HEIGHT));
+        batch.draw(background1, 0, bgYOffset1, (int) (Constants.GAME_WIDTH), (int) (Constants.GAME_HEIGHT));
+        batch.draw(background2, 0, bgYOffset2, (int) (Constants.GAME_WIDTH), (int) (Constants.GAME_HEIGHT));
     }
 
     private void drawStats(SpriteBatch batch)
     {
         font.getData().setScale(1.1f);
-        font.draw(batch, "Health: " + curHealthBar, MyGdxGame.WIDTH-150, MyGdxGame.HEIGHT-20);
-        font.draw(batch, "Lives: " + hero.getLives(), MyGdxGame.WIDTH-100, MyGdxGame.HEIGHT-50);
-        font.draw(batch, "Score: " + score, MyGdxGame.WIDTH-100, MyGdxGame.HEIGHT-80);
-        font.draw(batch, "Bomb: " + bombNum, MyGdxGame.WIDTH-100, MyGdxGame.HEIGHT-110);
+        font.draw(batch, "Health: " + curHealthBar, Constants.GAME_WIDTH-150, Constants.GAME_HEIGHT-20);
+        font.draw(batch, "Lives: " + hero.getLives(), Constants.GAME_WIDTH-100, Constants.GAME_HEIGHT-50);
+        font.draw(batch, "Score: " + score, Constants.GAME_WIDTH-100, Constants.GAME_HEIGHT-80);
+        font.draw(batch, "Bomb: " + bombNum, Constants.GAME_WIDTH-100, Constants.GAME_HEIGHT-110);
 		font.getData().setScale(1.5f);
     }
 
@@ -118,11 +112,11 @@ public class StageOneMap {
         if (isLose)
         {
             hero.setHitbox(new Rectangle(-1000,-1000,0,0));
-            font.draw(batch, "Game Over!", MyGdxGame.WIDTH/2-40, MyGdxGame.HEIGHT/2);
+            font.draw(batch, "Game Over!", Constants.GAME_WIDTH/2-40, Constants.GAME_HEIGHT/2);
         }
         else if (isWin)
         {
-            font.draw(batch, "WIN!", MyGdxGame.WIDTH/2-30, MyGdxGame.HEIGHT/2);
+            font.draw(batch, "WIN!", Constants.GAME_WIDTH/2-30, Constants.GAME_HEIGHT/2);
         }
     }
 
@@ -155,12 +149,12 @@ public class StageOneMap {
     private void runBackground()
     {
         bgYOffset1 -=1;
-        if ( bgYOffset1*(-1) >= MyGdxGame.HEIGHT) {
-            bgYOffset1 = MyGdxGame.HEIGHT;
+        if ( bgYOffset1*(-1) >= Constants.GAME_HEIGHT) {
+            bgYOffset1 = Constants.GAME_HEIGHT;
         }
         bgYOffset2 -=1;
-        if ( bgYOffset2*(-1) >= MyGdxGame.HEIGHT) {
-            bgYOffset2 = MyGdxGame.HEIGHT;
+        if ( bgYOffset2*(-1) >= Constants.GAME_HEIGHT) {
+            bgYOffset2 = Constants.GAME_HEIGHT;
         }
     }
 

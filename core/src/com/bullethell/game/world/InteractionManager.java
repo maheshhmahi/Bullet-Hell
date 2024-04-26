@@ -2,6 +2,10 @@ package com.bullethell.game.world;
 
 
 import com.badlogic.gdx.utils.TimeUtils;
+import com.bullethell.game.bullet.Bullet;
+import com.bullethell.game.entities.Enemy.Enemy;
+import com.bullethell.game.entities.players.hero.Hero;
+
 import java.util.List;
 
 public class InteractionManager {

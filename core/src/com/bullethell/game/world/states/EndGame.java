@@ -9,6 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.bullethell.game.utilities.NameTextInput;
+import com.bullethell.game.utilities.Storage;
+import com.bullethell.game.utils.Constants;
 
 
 public class EndGame {
@@ -88,10 +91,10 @@ public class EndGame {
 
     public void render(SpriteBatch batch) {
         batch.begin();
-        batch.draw(bg, 0, 0, MyGdxGame.WIDTH, MyGdxGame.HEIGHT);
-        font.draw(batch, "Your score: " + finalScore, 160, MyGdxGame.HEIGHT-150);
+        batch.draw(bg, 0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
+        font.draw(batch, "Your score: " + finalScore, 160, Constants.GAME_HEIGHT-150);
         if (getName.isOk())
-            font.draw(batch, "Your ranking:  " + storage.getRanking(finalScore), 160, MyGdxGame.HEIGHT-200);
+            font.draw(batch, "Your ranking:  " + storage.getRanking(finalScore), 160, Constants.GAME_HEIGHT-200);
         batch.end();
 
         stage.act();
