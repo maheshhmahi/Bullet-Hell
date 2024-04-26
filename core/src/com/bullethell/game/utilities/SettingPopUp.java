@@ -1,6 +1,8 @@
 package com.bullethell.game.utilities;
 
 import com.badlogic.gdx.Input;
+import com.bullethell.game.entities.players.hero.Hero;
+import com.bullethell.game.entities.players.hero.HeroInputKeyManager;
 
 import javax.swing.*;
 import java.awt.*;
