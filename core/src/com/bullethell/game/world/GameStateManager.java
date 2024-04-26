@@ -6,21 +6,23 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
 
-public class GameStates {
-
-    private static GameStates _instance;
-    private Map playState;
+//manage Menu (begin state), GameMap (play state), EndGame (end state)
+public class GameStateManager {
+    private static GameStateManager _instance;
+    private StageOneMap playState;
     private Menu beginState;
     private EndGame endState;
-    private int stateNum; //1 = beginState, 2= playState, 3 = endState
+    private int stateNum; //1 = beginState, 2 = playState, 3 = endState
     private Music music;
     private long playStateEnd;
 
-    protected GameStates()
+	private boolean hard;
+
+    protected GameStateManager()
     {
         beginState = new Menu();
         stateNum = 1;
-        setMusic("menuMusic.mp3", true, 0.5f);
+        setMusic("opening.mp3", true, 0.5f);
         music.play();
         playStateEnd = 0;
     }
@@ -32,49 +34,57 @@ public class GameStates {
         music.setVolume(volume);
     }
 
-    public static GameStates getInstance()
+    public static GameStateManager getInstance()
     {
         if (_instance == null)
         {
-            _instance = new GameStates();
+            _instance = new GameStateManager();
         }
         return _instance;
     }
 
-    //update state number when triggered
-    public void checkIfMovingState()
+    public void update()
     {
+
         switch (stateNum)
         {
             case 1: //the game is at state 1
-
-                if (beginStateIsTriggered()) { // if state 1 is triggered to move to next state
-                    playState = new BeginGameMap();
+				hard=beginState.getHard();
+                if (beginState.readyToChange()) { // if state 1 is triggered to move to next state
+                    playState = new StageOneMap(hard);
                     beginState.dispose();
-                    stateNum += 1;
+                    beginState = null;
+                    stateNum += 1; //stateNum = 2
                     playStateEnd = 0;
-                    changeMusic("playMusic.mp3", true, 0.5f);
+                    changeMusic("playSound.mp3", true, 0.5f);
                 }
                 break;
+
             case 2:
                 if (playStateIsTriggered() && playStateEnd==0)//just win/lose
                 {
                     playStateEnd = TimeUtils.nanoTime();
                 }
 
-                if (playStateIsTriggered() && TimeUtils.nanoTime() - playStateEnd > 3000000000L) {
-                    System.out.println("----------");
-                    endState = new EndGame();
+                if (playStateIsTriggered() && TimeUtils.nanoTime() - playStateEnd > 4000000000L) {
+                    endState = new EndGame(playState.getScore());
                     playState.dispose();
-                    stateNum += 1;
-                    changeMusic("menuMusic.mp3", true, 0.1f);
+                    playState = null;
+                    stateNum += 1; //stateNum = 3
+                    changeMusic("opening.mp3", true, 0.1f);
                 }
                 break;
+
             case 3:
-                if (endStateIsTriggered()) {
+                if (endState.readyToChange()) {
                     beginState = new Menu();
                     endState.dispose();
+                    endState = null;
                     stateNum = 1; //loop back to beginning state
+                }
+                else if (endState.readyToExit())
+                {
+                    Gdx.app.exit();
                 }
                 break;
         }
@@ -87,22 +97,11 @@ public class GameStates {
         music.play();
     }
 
-    //the beginning state is triggered to move to next state
-    private boolean beginStateIsTriggered()
-    {
-        return beginState.readyToChange();
-    }
-
-    //the end state is triggered to move to next state
-    private boolean endStateIsTriggered()
-    {
-        return endState.readyToChange();
-    }
 
     //the play state is triggered to move to next state
     private boolean playStateIsTriggered()
     {
-        return (playState.getHero().isDie() ||
+        return (playState.isLose() ||
                 playState.isWin());
     }
 
@@ -124,5 +123,4 @@ public class GameStates {
                 break;
         }
     }
-
 }
