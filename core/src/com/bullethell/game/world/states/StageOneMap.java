@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.bullethell.game.AIEngine.RunAIEngine;
 import com.bullethell.game.entities.players.hero.Hero;
 import com.bullethell.game.utils.Constants;
 import com.bullethell.game.world.InteractionManager;
