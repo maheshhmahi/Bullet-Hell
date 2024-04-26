@@ -2,14 +2,14 @@ package com.bullethell.game.Algorithms.EnemyMovePattern;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.entities.Enemy.Enemy;
-import com.bullethell.game.bullethellGame;
+import com.bullethell.game.utils.Constants;
 
 //drop steadily to 2/3 of window height then move horizontally following the target
 public class DropToMiddleThenFollowHorizontally extends EnemyMovePattern {
     private float newX, newY;
     private float curX, curY;
     private Enemy entity;
-    private float dropHeight = bullethellGame.HEIGHT / 3 * 2;
+    private float dropHeight = Constants.GAME_HEIGHT / 3 * 2;
     public DropToMiddleThenFollowHorizontally(int attackingDuration)
     {
         super(attackingDuration);

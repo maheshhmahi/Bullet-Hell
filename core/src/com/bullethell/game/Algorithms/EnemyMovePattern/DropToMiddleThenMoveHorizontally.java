@@ -3,7 +3,7 @@ package com.bullethell.game.Algorithms.EnemyMovePattern;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.entities.Enemy.Direction;
 import com.bullethell.game.entities.Enemy.Enemy;
-import com.bullethell.game.bullethellGame;
+import com.bullethell.game.utils.Constants;
 
 //drop from top to 2/3 window height then move horizontally back and forth
 public class DropToMiddleThenMoveHorizontally extends EnemyMovePattern {
@@ -11,7 +11,7 @@ public class DropToMiddleThenMoveHorizontally extends EnemyMovePattern {
     private float newX, newY;
     private float curX, curY;
     private Enemy entity;
-    private float dropHeight = bullethellGame.HEIGHT / 3 * 2;
+    private float dropHeight = Constants.GAME_HEIGHT / 3 * 2;
 
     public DropToMiddleThenMoveHorizontally(int attackingDuration)
     {
@@ -38,7 +38,7 @@ public class DropToMiddleThenMoveHorizontally extends EnemyMovePattern {
         {
             boolean goWest = entity.getDirection() == Direction.W;
             boolean inRangeW = curX > 0;
-            boolean inRangeE = curX >= bullethellGame.WIDTH - entity.getSize().x;
+            boolean inRangeE = curX >= Constants.GAME_WIDTH - entity.getSize().x;
             boolean goEast = entity.getDirection() == Direction.E;
 
             if (goWest && inRangeW || goEast && inRangeE)

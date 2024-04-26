@@ -1,7 +1,7 @@
-package com.bullethell.game.Algorithms.BulletSoucesLayout;
+package com.bullethell.game.Algorithms.BulletSourcesLayout;
 
-import com.bullethell.game.entities.bullet.BulletSource;
 import com.bullethell.game.entities.Enemy.Enemy;
+import com.bullethell.game.entities.bullet.BulletSource;
 
 import java.util.List;
 

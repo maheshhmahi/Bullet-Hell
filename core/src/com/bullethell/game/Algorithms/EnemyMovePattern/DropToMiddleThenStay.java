@@ -2,7 +2,7 @@ package com.bullethell.game.Algorithms.EnemyMovePattern;
 
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.entities.Enemy.Enemy;
-import com.bullethell.game.bullethellGame;
+import com.bullethell.game.utils.Constants;
 
 //go steadily straight from top to 2/3 of window height then stay still
 public class DropToMiddleThenStay extends EnemyMovePattern {
@@ -30,7 +30,7 @@ public class DropToMiddleThenStay extends EnemyMovePattern {
     {
         newX = curX;
 
-        if (curY > bullethellGame.HEIGHT / 5*4) {
+        if (curY > Constants.GAME_HEIGHT / 5*4) {
             newY = (float) (curY - entity.getSpeed());
         } else
             newY = curY;

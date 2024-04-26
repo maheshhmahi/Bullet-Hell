@@ -1,7 +1,7 @@
 package com.bullethell.game.Algorithms.EnemyMovePattern;
 
 import com.badlogic.gdx.utils.TimeUtils;
-import com.bullethell.game.characters.enemy.EnemyOne;
+import com.bullethell.game.entities.Enemy.Enemy;
 
 public abstract class EnemyMovePattern {
     protected long initTime;
@@ -13,6 +13,6 @@ public abstract class EnemyMovePattern {
         dTimeToRetrieve = attackingDuration;
     }
 
-    public abstract void applyMovePattern(EnemyOne entity);
+    public abstract void applyMovePattern(Enemy entity);
     
 }
