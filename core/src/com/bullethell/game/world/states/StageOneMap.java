@@ -38,9 +38,9 @@ public class StageOneMap {
 		hero = Hero.getInstance();
 		hero.reInitialize();
 		if(hard==false)
-			AIEnemy = RunAIEngine.getInstance("D:\\M@hii\\WSU\\sem 2\\SDA\\team-nlc587x\\team-nlc587x\\core\\assets\\easy.json");
+			AIEnemy = RunAIEngine.getInstance("assets/easy.json");
 		else
-			AIEnemy = RunAIEngine.getInstance("D:\\M@hii\\WSU\\sem 2\\SDA\\team-nlc587x\\team-nlc587x\\core\\assets\\hard.json");
+			AIEnemy = RunAIEngine.getInstance("assets/hard.json");
         AIEnemy.reInitialize();
         background1 = new Texture("galaxy.jpg");
         background2 = new Texture("galaxy.jpg");

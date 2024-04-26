@@ -23,7 +23,7 @@ public class Storage {
     public static Storage getInstance()
     {
         if (_instance == null)
-            _instance = new Storage("core/assets/Scores.txt");
+            _instance = new Storage("assets/Scores.txt");
         return _instance;
     }
 
