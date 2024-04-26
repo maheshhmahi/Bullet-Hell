@@ -3,6 +3,9 @@ package com.bullethell.game.AIEngine;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.TimeUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -50,7 +53,7 @@ public class RunAIEngine {
         try (FileReader reader = new FileReader(jsonFilePath))
         {
             //Read JSON file
-            JSONObject obj = (JSONObject)JSONValue.parse(reader); //whole file
+            JSONObject obj = (JSONObject) JSONValue.parse(reader); //whole file
             this.wavesJson = (JSONArray)obj.get("waves");
         } catch (FileNotFoundException e) {
             e.printStackTrace();

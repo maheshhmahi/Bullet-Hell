@@ -5,8 +5,8 @@ import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.AIEngine.EnemyBSourceBulletManager;
 import com.bullethell.game.AIEngine.EnemyWave;
 import com.bullethell.game.AIEngine.RunAIEngine;
-import com.bullethell.game.bullet.Bullet;
 import com.bullethell.game.entities.Enemy.Enemy;
+import com.bullethell.game.entities.bullet.Bullet;
 import com.bullethell.game.entities.players.hero.Hero;
 
 import java.util.List;
