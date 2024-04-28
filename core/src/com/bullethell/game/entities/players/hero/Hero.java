@@ -37,7 +37,7 @@ public class Hero {
 
     private Hero() {
         pos = new Vector2(Constants.GAME_WIDTH / 2, 100);
-        texture = new Texture("Hero.png");
+        texture = new Texture("playerShip1_red.png");
         bomb = new Texture("bomb.png");
 		pressBomb=false;
         size = new Vector2(60, 60);
