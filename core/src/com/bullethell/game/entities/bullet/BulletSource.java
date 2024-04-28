@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-//the clouds surrounding enemies that emit bullets
 public class BulletSource {
     private Texture texture;
     private Vector2 pos;

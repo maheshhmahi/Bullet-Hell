@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.bullethell.game.entities.bullet.Bullet;
 import com.bullethell.game.entities.bullet.HeroBullet;
+import com.bullethell.game.entities.bullet.factory.BulletFactory;
+import com.bullethell.game.entities.bullet.factory.HeroBulletFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +51,8 @@ public class HeroBulletsManager {
     }
 
     public void addBullet(Vector2 pos, Vector2 size) {
-        Bullet newBullet = new HeroBullet();
+        BulletFactory bulletFactory = new HeroBulletFactory();
+        Bullet newBullet = bulletFactory.createBullet();
         newBullet.setPos(pos.x + size.x / 2, pos.y + size.y);
         bullets.add(newBullet);
         shootSound.play();
