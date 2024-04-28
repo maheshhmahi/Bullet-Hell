@@ -67,7 +67,7 @@
       }
     },
     {
-      "time": 48000,
+      "time": 40000,
       "enemy":
       {
         "type": "BossA",
@@ -144,7 +144,7 @@
       }
     },
     {
-      "time": 90000,
+      "time": 80000,
       "enemy":
       {
         "type": "EnemyB",

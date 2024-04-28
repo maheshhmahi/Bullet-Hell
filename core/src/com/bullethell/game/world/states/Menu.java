@@ -13,19 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bullethell.game.utilities.PopUp;
 import com.bullethell.game.utilities.SettingPopUp;
 import com.bullethell.game.utilities.Storage;
-import com.bullethell.game.utilities.TextPopUp;
 import com.bullethell.game.utils.Constants;
 
 public class Menu {
     private Texture bg;
-    private Texture title;
     private Stage stage;
 	private boolean hard;
     private Image playButton;
     private Image playHardButton;
-    private Image tutorialButton;
     private Image settingButton;
-    private Image aboutButton;
     private BitmapFont font;
     private Storage storage;
     private PopUp popUp;
@@ -39,8 +35,7 @@ public class Menu {
         font.setColor(Color.YELLOW);
         storage = Storage.getInstance();
         popUp = null;
-        bg = new Texture("test_back.jpg");
-        title = new Texture("title.png");
+        bg = new Texture("menu.jpg");
         stage = new Stage();
 
 		hard=false;
@@ -51,12 +46,8 @@ public class Menu {
         playHardButton = new Image(new Texture("playHardButton.png"));
         playHardButton.setPosition(stage.getWidth()/2-playButton.getWidth()/2, stage.getHeight()/2-playButton.getHeight()/2-100);
         
-		tutorialButton = new Image(new Texture("tutorialButton.png"));
-        tutorialButton.setPosition(stage.getWidth()/2-tutorialButton.getWidth()/2, stage.getHeight()/2-tutorialButton.getHeight()/2-170);
         settingButton = new Image(new Texture("settingButton.png"));
         settingButton.setPosition(stage.getWidth()/2-settingButton.getWidth()/2, stage.getHeight()/2-settingButton.getHeight()/2-70*2-100);
-        aboutButton = new Image(new Texture("aboutButton.png"));
-        aboutButton.setPosition(stage.getWidth()/2-aboutButton.getWidth()/2, stage.getHeight()/2-aboutButton.getHeight()/2-70*3-100);
 
         playButton.addListener(new ClickListener(){
             @Override
@@ -122,54 +113,9 @@ public class Menu {
             }
         });
 
-        aboutButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                if (popUp != null)
-                    popUp.close();
-                popUp = new TextPopUp("About", 300,100, "core/assets/about.txt");
-            }
-
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                super.enter(event, x, y, pointer, fromActor);
-                aboutButton.setPosition(aboutButton.getX()+3, aboutButton.getY()+3);
-            }
-
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                super.exit(event, x, y, pointer, toActor);
-                aboutButton.setPosition(aboutButton.getX()-3, aboutButton.getY()-3);
-            }
-        });
-
-        tutorialButton.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                if (popUp != null)
-                    popUp.close();
-                popUp = new TextPopUp("Tutorial", 300,400, "D:\\M@hii\\WSU\\sem 2\\SDA\\team-nlc587x\\team-nlc587x\\core\\assets\\tutorial.txt");
-            }
-
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                super.enter(event, x, y, pointer, fromActor);
-                tutorialButton.setPosition(tutorialButton.getX()+3, tutorialButton.getY()+3);
-            }
-
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                super.exit(event, x, y, pointer, toActor);
-                tutorialButton.setPosition(tutorialButton.getX()-3, tutorialButton.getY()-3);
-            }
-        });
 
         stage.addActor(playButton);
-        stage.addActor(tutorialButton);
 		stage.addActor(playHardButton);
-        stage.addActor(aboutButton);
         stage.addActor(settingButton);
         Gdx.input.setInputProcessor(stage);
     }
@@ -182,9 +128,6 @@ public class Menu {
     public void render(SpriteBatch batch) {
         batch.begin();
         batch.draw(bg, 0, 0, Constants.GAME_WIDTH, Constants.GAME_HEIGHT);
-        batch.draw(title, 20, Constants.GAME_HEIGHT-220, Constants.GAME_WIDTH - 20, 140);
-        font.draw(batch, "Top 3 scores", Constants.GAME_WIDTH-300, Constants.GAME_HEIGHT-230);
-        font.draw(batch, storage.getTopEntry(3), Constants.GAME_WIDTH-330, Constants.GAME_HEIGHT-260);
         batch.end();
         stage.act();
         stage.draw();
@@ -200,7 +143,6 @@ public class Menu {
 
     public void dispose() {
         bg.dispose();
-        title.dispose();
         font.dispose();
         if (popUp != null)
             popUp.dispose();

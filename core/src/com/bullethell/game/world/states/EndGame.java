@@ -32,7 +32,7 @@ public class EndGame {
         readyToChange = false;
         readyToExit = false;
         this.finalScore = finalScore;
-        bg = new Texture("test_back.jpg");
+        bg = new Texture("menu.jpg");
         getName = new NameTextInput(finalScore);
         unfreezeBg = false; //at first, does not let change to main Menu (until enter name)
         font = new BitmapFont();
