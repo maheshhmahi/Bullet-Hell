@@ -42,8 +42,8 @@ public class StageOneMap {
 		else
 			AIEnemy = RunAIEngine.getInstance("assets/hard.json");
         AIEnemy.reInitialize();
-        background1 = new Texture("galaxy.jpg");
-        background2 = new Texture("galaxy.jpg");
+        background1 = new Texture("background.png");
+        background2 = new Texture("background.png");
         bgYOffset1 = 0;
         bgYOffset2 = Constants.GAME_HEIGHT;
         font = new BitmapFont();

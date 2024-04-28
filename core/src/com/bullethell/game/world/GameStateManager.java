@@ -25,7 +25,7 @@ public class GameStateManager {
     {
         beginState = new Menu();
         stateNum = 1;
-        setMusic("opening.mp3", true, 0.5f);
+        setMusic("menuMusic.mp3", true, 0.5f);
         music.play();
         playStateEnd = 0;
     }
@@ -59,7 +59,7 @@ public class GameStateManager {
                     beginState = null;
                     stateNum += 1; //stateNum = 2
                     playStateEnd = 0;
-                    changeMusic("playSound.mp3", true, 0.5f);
+                    changeMusic("playMusic.mp3", true, 0.5f);
                 }
                 break;
 
@@ -74,7 +74,7 @@ public class GameStateManager {
                     playState.dispose();
                     playState = null;
                     stateNum += 1; //stateNum = 3
-                    changeMusic("opening.mp3", true, 0.1f);
+                    changeMusic("playMusic.mp3", true, 0.1f);
                 }
                 break;
 
