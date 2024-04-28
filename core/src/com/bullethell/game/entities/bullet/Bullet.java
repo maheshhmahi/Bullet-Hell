@@ -58,6 +58,38 @@ public abstract class Bullet {
         return initTime;
     }
 
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
+    }
+
+    public Vector2 getSize() {
+        return size;
+    }
+
+    public void setSize(Vector2 size) {
+        this.size = size;
+    }
+
+    public void setPos(Vector2 pos) {
+        this.pos = pos;
+    }
+
+    public void setInitTime(long initTime) {
+        this.initTime = initTime;
+    }
+
+    public void setHitbox(Rectangle hitbox) {
+        this.hitbox = hitbox;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
     public Rectangle getHitbox()
     {
         return hitbox;
