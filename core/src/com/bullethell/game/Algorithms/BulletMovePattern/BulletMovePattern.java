@@ -3,6 +3,10 @@ package com.bullethell.game.Algorithms.BulletMovePattern;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.entities.Enemy.Enemy;
 import com.bullethell.game.entities.bullet.*;
+import com.bullethell.game.entities.bullet.factory.BigBulletFactory;
+import com.bullethell.game.entities.bullet.factory.BulletFactory;
+import com.bullethell.game.entities.bullet.factory.MediumBulletFactory;
+import com.bullethell.game.entities.bullet.factory.SmallBulletFactory;
 
 import java.util.List;
 
@@ -18,6 +22,8 @@ public abstract class BulletMovePattern {
     private String bulletType;
     private long existingTime;
     private int count;
+
+    BulletFactory factory;
 
     public BulletMovePattern(List<BulletSource> bulletSources,
                              List<List<Bullet>> bulletsList,
@@ -35,20 +41,19 @@ public abstract class BulletMovePattern {
 
     protected Bullet createBullet()
     {
-        Bullet result;
         switch (bulletType)
         {
             case "SmallBullet":
-                result = new SmallBullet();
+                factory = new SmallBulletFactory();
                 break;
             case "BigBullet":
-                result = new BigBullet();
+                factory = new BigBulletFactory();
                 break;
             default:
-                result = new MediumBullet();
+                factory = new MediumBulletFactory();
                 break;
         }
-        return result;
+        return factory.createBullet();
     }
 
     public void update(float delta, boolean enemyDie)
