@@ -71,7 +71,7 @@
       "enemy":
       {
         "type": "BossA",
-        "attackingDuration": 22000,
+        "attackingDuration": 32000,
         "num": 1,
         "layout": "Single",
         "size": [
@@ -151,6 +151,50 @@
         "attackingDuration": 10000,
         "num": 3,
         "layout": "HorizontalHalfWidth",
+        "size": [
+          50,
+          50],
+        "moveStyle": "SteadyDrop",
+        "bullets": [
+          {
+            "bulletType": "SmallBullet",
+            "time": 0,
+            "layout": "SextupleCenter",
+            "moveStyle": "ConstAngel"
+          }
+        ]
+      }
+    },
+    {
+      "time": 90000,
+      "enemy":
+      {
+        "type": "EnemyB",
+        "attackingDuration": 10000,
+        "num": 3,
+        "layout": "HorizontalFullWidth",
+        "size": [
+          50,
+          50],
+        "moveStyle": "SteadyDrop",
+        "bullets": [
+          {
+            "bulletType": "SmallBullet",
+            "time": 0,
+            "layout": "SextupleCenter",
+            "moveStyle": "ConstAngel"
+          }
+        ]
+      }
+    },
+    {
+      "time": 110000,
+      "enemy":
+      {
+        "type": "EnemyA",
+        "attackingDuration": 10000,
+        "num": 3,
+        "layout": "HorizontalFullWidth",
         "size": [
           50,
           50],
