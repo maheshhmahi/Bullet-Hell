@@ -16,6 +16,7 @@ public abstract class Enemy {
     protected int health;
 
     private Rectangle hitbox;
+
     private Vector2 size;
     private EnemyMovePattern enemyMovePattern;
     private Vector2 tempPos; //position at some point depending on the application/client
@@ -160,4 +161,25 @@ public abstract class Enemy {
     public void setHitbox(Rectangle hitbox) {
         this.hitbox = hitbox;
     }
+
+    public Texture getTexture() {
+        return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
 }

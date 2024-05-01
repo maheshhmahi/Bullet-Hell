@@ -26,6 +26,7 @@ import com.bullethell.game.Algorithms.EnemyMovePattern.SW;
 import com.bullethell.game.Algorithms.EnemyMovePattern.SE;
 import com.bullethell.game.Algorithms.EnemyMovePattern.SteadyDrop;
 
+import com.bullethell.game.entities.Enemy.factory.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -38,6 +39,8 @@ public class EnemyWave {
 
     private List<EnemyBSourceBulletManager> managers;
     private String enemyType;
+
+    private EnemyFactory enemyFactory;
 
     public EnemyWave(JSONObject enemyJSON)
     {
@@ -139,21 +142,21 @@ public class EnemyWave {
         switch (type)
         {
             case "EnemyA":
-                result = new EnemyA(width, height);
+                enemyFactory = new EnemyAFactory();
                 break;
             case "EnemyB":
-                result = new EnemyB(width, height);
+                enemyFactory = new EnemyBFactory();
                 break;
             case "BossA":
-                result = new BossA(width, height);
+                enemyFactory = new BossAFactory();
                 break;
             case "BossB":
-                result = new BossB(width, height);
+                enemyFactory = new BossBFactory();
                 break;
             default:
-                result = new EnemyB(width, height);
+                enemyFactory = new EnemyBFactory();
         }
-        return  result;
+        return  enemyFactory.createEnemy(width, height);
     }
 
     public void render(SpriteBatch batch)
