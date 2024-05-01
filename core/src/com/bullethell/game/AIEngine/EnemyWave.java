@@ -33,8 +33,6 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-//create a wave of enemy according to json object
-//each wave has multiple enemies of same Enemy type
 public class EnemyWave {
 
     private List<EnemyBSourceBulletManager> managers;
