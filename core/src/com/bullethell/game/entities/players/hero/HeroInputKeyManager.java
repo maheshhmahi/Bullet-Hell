@@ -13,7 +13,6 @@ public class HeroInputKeyManager {
     public static int shootKey = Input.Keys.SPACE;
 	public static int bombKey = Input.Keys.CONTROL_LEFT;
     public static int slowSpeedKey = Input.Keys.SHIFT_LEFT;
-	//public static int subSpeedKey = Input.Keys.SHIFT_RIGHT;
     public static int normalModeKey = Input.Keys.RIGHT_BRACKET;
     public static int slowModeKey = Input.Keys.LEFT_BRACKET;
 
@@ -70,9 +69,6 @@ public class HeroInputKeyManager {
             hero.setCurSpeed((int)(150));
 		else
 			hero.setCurSpeed((int)(250));
-
-        //if(Gdx.input.isKeyPressed(subSpeedKey))
-          //  hero.setCurSpeed((int)(hero.getCurSpeed()-hero.getAcceleration()*delta));
 
         if(Gdx.input.isKeyPressed(normalModeKey))
             hero.setCurSpeed(hero.getNormalSpeed());

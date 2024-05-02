@@ -192,7 +192,7 @@ public class SettingPopUp extends PopUp {
                     downBox.getSelectedItem()+"",leftBox.getSelectedItem()+"",speedBox.getSelectedItem()+"",
                     shootBox.getSelectedItem()+""};
             Set<String> uniqueKeys = new HashSet<String>(Arrays.asList(allKeys));
-            if (uniqueKeys.size() < allKeys.length) //have duplicate keys
+            if (uniqueKeys.size() < allKeys.length)
             {
                 errCardLayout.show(errPanel, "err");
                 return;

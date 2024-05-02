@@ -19,9 +19,9 @@ public abstract class Enemy {
 
     private Vector2 size;
     private EnemyMovePattern enemyMovePattern;
-    private Vector2 tempPos; //position at some point depending on the application/client
-    private Direction direction; //moving direction
-    private Hero target; //the entity that this enemy may follow/attack
+    private Vector2 tempPos;
+    private Direction direction;
+    private Hero target; 
     private Vector2 pos;
 
     public Enemy(int width, int height) {

@@ -11,8 +11,8 @@ import com.bullethell.game.world.GameStateManager;
 public class BulletHellGame extends ApplicationAdapter {
 
     public static final int WIDTH = 480;
-    public static final int HEIGHT = 800; //PROBLEM ON MY LAPTOP
-    public static final String TITLE = "NLC587";
+    public static final int HEIGHT = 800;
+    public static final String TITLE = "Bullet Hell";
 
     private OrthographicCamera camera;
     private SpriteBatch batch;
