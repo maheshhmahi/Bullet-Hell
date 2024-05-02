@@ -6,11 +6,13 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.entities.bullet.Bullet;
+import com.bullethell.game.entities.players.hero.observer.ScoreObserver;
 import com.bullethell.game.utils.Constants;
+import com.bullethell.game.world.states.StageOneMap;
 
 import java.util.List;
 
-public class Hero {
+public class Hero implements ScoreObserver {
     private static Hero _instance;
     private Vector2 pos;
     private Vector2 size;
@@ -34,6 +36,7 @@ public class Hero {
     private static int slowSpeed = 200;
 	public static boolean cheat = false;
 
+    private StageOneMap stageOneMap;
 
     private Hero() {
         pos = new Vector2(Constants.GAME_WIDTH / 2, 100);
@@ -54,6 +57,7 @@ public class Hero {
         count = 0;
         hitboxT = new Texture("bulletSource.png");
         bulletsManager = new HeroBulletsManager();
+        this.stageOneMap = stageOneMap;
     }
 
     public static Hero getInstance() {
@@ -242,5 +246,11 @@ public class Hero {
     public int getSlowSpeed()
     {
         return slowSpeed;
+    }
+
+    @Override
+    public void updateScore(int scoreChange) {
+        // Handle score updates
+        stageOneMap.updateScore(scoreChange);
     }
 }

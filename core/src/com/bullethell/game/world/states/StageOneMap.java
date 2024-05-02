@@ -11,10 +11,14 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.bullethell.game.AIEngine.RunAIEngine;
 import com.bullethell.game.entities.players.hero.Hero;
+import com.bullethell.game.entities.players.hero.observer.ScoreObserver;
 import com.bullethell.game.utils.Constants;
 import com.bullethell.game.world.InteractionManager;
 
-public class StageOneMap {
+import java.util.ArrayList;
+import java.util.List;
+
+public class StageOneMap implements ScoreObserver {
 
     private RunAIEngine AIEnemy;
     private Texture background1, background2;
@@ -32,6 +36,8 @@ public class StageOneMap {
     private Sound collisionSound;
     private Sound bombSound;
 	private Sound awardSound;
+
+    private List<ScoreObserver> scoreObservers;
 
 
     public StageOneMap(boolean hard) {
@@ -57,7 +63,7 @@ public class StageOneMap {
         collisionSound = Gdx.audio.newSound(Gdx.files.internal("explode.mp3"));
 		bombSound = Gdx.audio.newSound(Gdx.files.internal("explode2.mp3"));
 		awardSound = Gdx.audio.newSound(Gdx.files.internal("award.mp3"));
-
+        scoreObservers = new ArrayList<>();
     }
 
     public void render(OrthographicCamera camera, SpriteBatch batch) {
@@ -130,9 +136,9 @@ public class StageOneMap {
 
         handleInteractions();
 
-        updateScore(tempEnemyType);
+//        updateScore(tempEnemyType);
 
-        updateHealthBar();
+//        updateHealthBar();
 
         updateWinningLosing();
     }
@@ -165,36 +171,44 @@ public class StageOneMap {
         boolean BHHit =  iManager.BulletHitHero();
         tempEnemyType = iManager.BulletHitEnemy();
 
-        if ( EHHit || BHHit || tempEnemyType != "")
+        if ( EHHit || BHHit || tempEnemyType != "") {
             collisionSound.play();
+            updateScore(tempEnemyType);
+            updateHealthBar();
+        }
+
     }
 
     private void updateScore(String enemyType)
     {
+        int scoreChange = 0;
         switch (enemyType)
         {
             case "BossA":
-                score += 10;
+                scoreChange += 10;
                 break;
             case "EnemyA":
-                score += 5;
+                scoreChange += 5;
                 break;
             case "BossB":
-                score += 20;
+                scoreChange += 20;
                 break;
             case "EnemyB":
-                score += 7;
+                scoreChange += 7;
                 break;
             default:
-                score += 0;
+                scoreChange += 0;
         }
 		if(score>1000 && score%1000<50)
 		{
 			bombNum +=1;
 			score+=50;
 			awardSound.play();
-
 		}
+        if (scoreChange != 0) {
+            score += scoreChange;
+            notifyScoreObservers(scoreChange);
+        }
     }
 	public int getBombNum()
 	{
@@ -230,4 +244,22 @@ public class StageOneMap {
         return score;
     }
 
+    public void addObserver(ScoreObserver observer) {
+        scoreObservers.add(observer);
+    }
+
+    public void removeObserver(ScoreObserver observer) {
+        scoreObservers.remove(observer);
+    }
+
+    private void notifyScoreObservers(int scoreChange) {
+        for (ScoreObserver observer : scoreObservers) {
+            observer.updateScore(scoreChange);
+        }
+    }
+
+    @Override
+    public void updateScore(int scoreChange) {
+        score += scoreChange;
+    }
 }
