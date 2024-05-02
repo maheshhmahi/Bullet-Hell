@@ -1,26 +1,22 @@
 package com.bullethell.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.bullethell.game.utils.Constants;
-import com.bullethell.game.world.GameStates;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.bullethell.game.world.GameStateManager;
+
 
 public class BulletHellGame extends ApplicationAdapter {
 
-    public static final int WIDTH = Constants.GAME_WIDTH;
-    public static final int HEIGHT = Constants.GAME_HEIGHT;
-
+    public static final int WIDTH = 480;
+    public static final int HEIGHT = 800;
     public static final String TITLE = "Bullet Hell";
 
     private OrthographicCamera camera;
     private SpriteBatch batch;
-    private GameStates gameStates;
+    private GameStateManager gsm;
 
     @Override
     public void create () {
@@ -28,7 +24,7 @@ public class BulletHellGame extends ApplicationAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, WIDTH, HEIGHT);
         camera.update();
-        gameStates = gameStates.getInstance();
+        gsm = GameStateManager.getInstance();
     }
 
     @Override
@@ -40,13 +36,12 @@ public class BulletHellGame extends ApplicationAdapter {
 
         batch.setProjectionMatrix(camera.combined);
 
-        gameStates.checkIfMovingState();
-        gameStates.render(camera, batch);
+        gsm.update();
+        gsm.render(camera, batch);
     }
 
     @Override
     public void dispose () {
         batch.dispose();
     }
-
 }

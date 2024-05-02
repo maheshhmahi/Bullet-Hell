@@ -78,6 +78,7 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
+
+        implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     }
 }
