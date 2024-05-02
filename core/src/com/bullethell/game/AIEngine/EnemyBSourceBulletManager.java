@@ -22,8 +22,7 @@ import org.json.simple.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-//put an enemy with its bullet sources and bullets
-//Note: handle ONE enemy
+
 public class EnemyBSourceBulletManager {
     private Enemy enemy;
     private List<BulletSource> bulletSources;
@@ -86,7 +85,7 @@ public class EnemyBSourceBulletManager {
             //prepare for next shooting wave when it's time
             long timeToNextWave = (long) nextShootingWaveJson.get("time") - (TimeUtils.millis() - spawnTime);
             boolean timeToReleaseAWave = timeToNextWave < 100 && timeToNextWave > -100;
-            if (timeToReleaseAWave && nextShootingWaveNum < wavesJSON.size()) //it's time -> release the wave
+            if (timeToReleaseAWave && nextShootingWaveNum < wavesJSON.size())
             {
                 if (nextShootingWaveJson.get("pause") != null) //pause shooting
                     pause();

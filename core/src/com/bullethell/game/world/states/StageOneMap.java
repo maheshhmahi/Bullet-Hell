@@ -174,16 +174,16 @@ public class StageOneMap {
         switch (enemyType)
         {
             case "BossA":
-                score += 5;
+                score += 10;
                 break;
             case "EnemyA":
                 score += 5;
                 break;
             case "BossB":
-                score += 5;
+                score += 20;
                 break;
             case "EnemyB":
-                score += 5;
+                score += 7;
                 break;
             default:
                 score += 0;

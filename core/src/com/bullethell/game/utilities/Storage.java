@@ -3,7 +3,6 @@ package com.bullethell.game.utilities;
 import java.io.*;
 import java.util.Vector;
 
-//the storage is a file
 public class Storage {
     private static Storage _instance;
     private static String fileName;
@@ -43,7 +42,6 @@ public class Storage {
         }
     }
 
-    //e.g. get top 3 entries/scores
     public static String getTopEntry(int numTopEntries)
     {
         int i = 1;
@@ -79,7 +77,7 @@ public class Storage {
         return content;
     }
 
-    //ranking starts from 1
+
     public static int getRanking(int score)
     {
         int index = 0;

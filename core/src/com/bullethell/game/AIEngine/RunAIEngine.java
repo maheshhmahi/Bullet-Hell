@@ -33,7 +33,7 @@ public class RunAIEngine {
         this.jsonFilePath = jsonFilePath;
     }
 
-    public void reInitialize() //because singleton does not re init this object when replay
+    public void reInitialize() //singleton does not re init this object when replay
     {
         waves = new ArrayList<>();
         setWaves(jsonFilePath);
